@@ -1,6 +1,13 @@
 // Fixed report: every measure, grouped by display folder.
 // Create each one on the Sales table: Table tools > New measure, paste from the name to the end of the expression.
 // Then set its format string (Measure tools > Format > Custom) and its display folder (Model view > Properties).
+//
+// Measures by page:
+//   Overview cards:      Sales Amount, Sales YoY %, Margin %, Orders, Avg Order Value, Customers
+//   Overview charts:     Sales Amount, Sales PY
+//   Products table:      Sales Amount, Sales PY, Sales YoY %, Margin %, Customers, Product Rank
+//   Products matrix:     Sales Amount, Sales YoY %, Margin %
+//   Helpers (no visual): Total Cost, Margin
 
 // ===== Display folder: Sales =====
 

@@ -23,7 +23,7 @@ Slow reports usually get that way for the same reasons: one wide table pulled st
 </p>
 
 - **Model.** The <!--n:flat_columns-->35<!--/n-->-column flat table becomes a star: a Sales fact that keeps only keys and numbers (7 columns), and Customer, Product and Date dimensions around it. Each product name is now stored once, not on every order line. Auto date/time is off, and one marked Date table drives all time logic.
-- **DAX.** No calculated columns: amounts are computed inside the measures. `Avg Order Value` is one division instead of a loop over <!--n:orders_2023-->159,695<!--/n--> orders in 2023; counts use `DISTINCTCOUNT` instead of building a table to count it; `Sales PY` uses `SAMEPERIODLASTYEAR` on the date table; results that are used twice are kept in variables. All ten measures are in [`powerbi/03-measures.dax`](powerbi/03-measures.dax), next to the slow versions in [`powerbi/before/measures.dax`](powerbi/before/measures.dax).
+- **DAX.** No calculated columns: amounts are computed inside the measures. `Avg Order Value` is one division instead of a loop over <!--n:orders_2023-->159,695<!--/n--> orders in 2023; counts use `DISTINCTCOUNT` instead of building a table to count it; `Sales PY` uses `SAMEPERIODLASTYEAR` on the date table; results that are used twice are kept in variables. All ten measures are in [`powerbi/03-measures.dax`](powerbi/03-measures.dax), next to the slow versions in [`powerbi/before/03-measures.dax`](powerbi/before/03-measures.dax).
 - **Check.** Every card, chart and table is compared with numbers computed in SQL straight from the source ([`powerbi/06-checks.md`](powerbi/06-checks.md)). Both reports show the same numbers, for example <!--n:sales_2023-->$318,425,878<!--/n--> of sales in 2023, down <!--n:yoy_2023-->28.4%<!--/n--> on 2022, at a <!--n:margin_2023-->56.0%<!--/n--> margin.
 
 ## The result
@@ -55,9 +55,8 @@ python prepare_data.py
 
 `prepare_data.py` downloads the data (<!--n:archive_mb-->42 MB<!--/n-->), unpacks it and writes `data/sales_flat.csv` (<!--n:rows_million-->2.1 million<!--/n--> rows, <!--n:flat_mb-->801 MB<!--/n-->), the one file both reports read. Then:
 
-1. Build the slow report from [`powerbi/before/README.md`](powerbi/before/README.md) and the fixed one from [`powerbi/README.md`](powerbi/README.md), both in Power BI Desktop, checking each against [`powerbi/06-checks.md`](powerbi/06-checks.md).
-2. Measure both with [`measurements/README.md`](measurements/README.md).
-3. Rerun the notebook: `jupyter nbconvert --to notebook --execute --inplace analysis/analysis.ipynb`. It recomputes every number and writes it into this README, the diagrams in `docs/` and `powerbi/06-checks.md`.
+1. Build and time both reports in Power BI Desktop with [`powerbi/08-build-checklist.md`](powerbi/08-build-checklist.md): click by click, with the numbers to check at each step, ending with the six timing files in `measurements/` ([method](measurements/README.md)).
+2. Rerun the notebook: `jupyter nbconvert --to notebook --execute --inplace analysis/analysis.ipynb`. It recomputes every number and writes it into this README, the diagrams in `docs/` and `powerbi/06-checks.md`.
 
 ## Data
 

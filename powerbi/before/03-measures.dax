@@ -1,0 +1,86 @@
+// Slow report: the calculated columns and measures slow reports usually carry.
+// Every measure returns the same numbers as the fixed report (../06-checks.md); only the speed and size differ.
+// Same names and format strings as ../03-measures.dax. No display folders: the measures sit loose on Sales.
+//
+// Measures by page:
+//   Overview cards:      Sales Amount, Sales YoY %, Margin %, Orders, Avg Order Value, Customers
+//   Overview charts:     Sales Amount, Sales PY
+//   Products table:      Sales Amount, Sales PY, Sales YoY %, Margin %, Customers, Product Rank
+//   Products matrix:     Sales Amount, Sales YoY %, Margin %
+//   Helpers (no visual): Total Cost, Margin
+
+// ===== Calculated columns on Sales (Table tools > New column); types and formats in 02-model.md =====
+
+Line Amount = Sales[Quantity] * Sales[Net Price]
+
+Line Cost = Sales[Quantity] * Sales[Unit Cost]
+
+Line Margin = Sales[Line Amount] - Sales[Line Cost]
+
+Year = YEAR ( Sales[Order Date] )
+
+Month = FORMAT ( Sales[Order Date], "mmm" )
+
+Month Number = MONTH ( Sales[Order Date] )
+
+
+// ===== Measures on Sales (Table tools > New measure) =====
+
+// Sales Amount: revenue in US dollars, summed from the stored Line Amount column.
+// Format: \$#,0
+Sales Amount =
+SUMX ( Sales, Sales[Line Amount] )
+
+// Total Cost: cost in US dollars, summed from the stored Line Cost column.
+// Format: \$#,0
+Total Cost =
+SUMX ( Sales, Sales[Line Cost] )
+
+// Margin: summed from the stored Line Margin column.
+// Format: \$#,0
+Margin =
+SUMX ( Sales, Sales[Line Margin] )
+
+// Margin %: Margin as a share of Sales Amount.
+// Slow: the same measure is evaluated again and again instead of once into a variable.
+// Format: 0.0%
+Margin % =
+IF ( [Sales Amount] = 0, BLANK (), [Margin] / [Sales Amount] )
+
+// Orders: number of distinct orders.
+// Slow: a whole table of order keys is built just to count it.
+// Format: #,0
+Orders =
+COUNTROWS ( SUMMARIZE ( Sales, Sales[Order Key] ) )
+
+// Customers: number of distinct customers who bought.
+// Slow: same pattern as Orders.
+// Format: #,0
+Customers =
+COUNTROWS ( SUMMARIZE ( Sales, Sales[Customer Key] ) )
+
+// Avg Order Value: Sales Amount per order.
+// Slow: iterates every order and recalculates Sales Amount for each one (context transition).
+// Format: \$#,0.00
+Avg Order Value =
+AVERAGEX ( VALUES ( Sales[Order Key] ), [Sales Amount] )
+
+// Sales PY: Sales Amount for the same months one year earlier.
+// Written by hand on the Year column, because there is no date table.
+// Format: \$#,0
+Sales PY =
+CALCULATE (
+    [Sales Amount],
+    FILTER ( ALL ( Sales[Year] ), Sales[Year] = MAX ( Sales[Year] ) - 1 )
+)
+
+// Sales YoY %: change against the previous year; blank when there is no previous year.
+// Slow: Sales PY is evaluated up to three times.
+// Format: 0.0%
+Sales YoY % =
+IF ( [Sales PY] = 0, BLANK (), ( [Sales Amount] - [Sales PY] ) / [Sales PY] )
+
+// Product Rank: the product's place by Sales Amount among the products in the current filters.
+// Format: 0
+Product Rank =
+IF ( ISBLANK ( [Sales Amount] ), BLANK (), RANKX ( ALL ( Sales[Product Name] ), [Sales Amount] ) )

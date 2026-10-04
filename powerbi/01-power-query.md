@@ -110,4 +110,4 @@ Column types: Product Key whole number; Product Name, Category and Subcategory t
 
 Then Home > Close & Apply. The first refresh reads the 800 MB file once per loaded query, so it takes a few minutes.
 
-**Check after loading** (Table view, row count at the bottom left): Sales 2,098,633 rows, Customer 88,063, Product 2,517.
+**Check after loading** (Table view, row count at the bottom left): Sales <!--n:sales_rows-->2,098,633<!--/n--> rows, Customer <!--n:customers_dim-->88,063<!--/n-->, Product <!--n:products_count-->2,517<!--/n-->.

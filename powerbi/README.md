@@ -15,21 +15,20 @@ Two reports with the same two pages and the same numbers. The **slow report** (`
 | Overview | Year, Country and Category slicers; six cards (Sales Amount, Sales YoY %, Margin %, Orders, Avg Order Value, Customers); sales and previous year by month; sales by category; sales by country |
 | Products | The same slicers, synced; a table of every product with its rank, sales, previous year, growth, margin and customers; a category and subcategory matrix |
 
-## Order
+## Files
 
-Run `python prepare_data.py` once first: it writes `data/sales_flat.csv`, the file both reports read.
+Start with [08-build-checklist.md](08-build-checklist.md): it walks both reports click by click, from a blank report to the six timing files, with the numbers to check at each step.
 
-**Slow report:** follow [before/README.md](before/README.md), then check it against [06-checks.md](06-checks.md).
+| File | Slow report (`before/`) | Fixed report (this folder) |
+|---|---|---|
+| Power Query | [before/01-power-query.md](before/01-power-query.md): one query, all 35 columns, Auto date/time on | [01-power-query.md](01-power-query.md): parameter, staging query, Sales, Customer, Product |
+| Model | [before/02-model.md](before/02-model.md): one table, six calculated columns, why each choice is slow | [02-model.md](02-model.md): Date table, formats, relationships, hidden columns, display folders, why each choice |
+| DAX | [before/03-measures.dax](before/03-measures.dax): six calculated columns, ten slow measures | [03-measures.dax](03-measures.dax): ten measures, no calculated columns |
+| Pages | [04-pages.md](04-pages.md) with the Sales fields from [before/README.md](before/README.md) | [04-pages.md](04-pages.md): 2 pages, 19 visuals, position, wells and format of each |
+| Theme | [05-theme.json](05-theme.json) | [05-theme.json](05-theme.json): View > Themes > Browse for themes |
+| Checks | [06-checks.md](06-checks.md) | [06-checks.md](06-checks.md): every number each page must show, written by the notebook |
+| Interactions | [07-interactions.md](07-interactions.md) | [07-interactions.md](07-interactions.md): edit-interactions matrices, filters, nothing else |
+| Build order | [08-build-checklist.md](08-build-checklist.md) | [08-build-checklist.md](08-build-checklist.md) |
+| Saved as | `before/sales-before.pbip` | `sales-after.pbip` |
 
-**Fixed report:**
-
-1. [01-power-query.md](01-power-query.md): untick Auto date/time, then the parameter, the staging query and the three tables.
-2. [02-model.md](02-model.md): the Date table, the relationships, hidden columns and display folders.
-3. [03-measures.dax](03-measures.dax): the ten measures with their formats.
-4. [05-theme.json](05-theme.json): View > Themes > Browse for themes.
-5. [04-pages.md](04-pages.md): the two pages, visual by visual.
-6. [06-checks.md](06-checks.md): every card, chart and table against the notebook's numbers.
-7. File > Save as > Power BI project files > `powerbi/sales-after.pbip`.
-8. Screenshot each page (View > Fit to page, then Win+Shift+S around the canvas) into `screenshots/overview.png` and `screenshots/products.png`, with the slicers in the default state.
-
-Then measure both reports: [../measurements/README.md](../measurements/README.md).
+Screenshots of the fixed report go in `screenshots/` (`overview.png`, `products.png`); the timings in [../measurements/](../measurements/README.md).
