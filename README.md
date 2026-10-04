@@ -55,7 +55,7 @@ python prepare_data.py
 
 1. Build the slow report from [`powerbi/before/README.md`](powerbi/before/README.md) and the fixed one from [`powerbi/README.md`](powerbi/README.md), both in Power BI Desktop, checking each against [`powerbi/06-checks.md`](powerbi/06-checks.md).
 2. Measure both with [`measurements/README.md`](measurements/README.md).
-3. Rerun the notebook to recompute every number: `jupyter nbconvert --to notebook --execute --inplace analysis/analysis.ipynb`.
+3. Rerun the notebook: `jupyter nbconvert --to notebook --execute --inplace analysis/analysis.ipynb`. It recomputes every number and writes it into this README, the diagrams in `docs/` and `powerbi/06-checks.md`.
 
 ## Data
 
