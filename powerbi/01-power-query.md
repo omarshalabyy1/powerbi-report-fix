@@ -1,6 +1,6 @@
 # 1. Power Query: the flat file split into a star
 
-The fixed report reads the same file as the slow one, `data/sales_flat.csv` (run `python prepare_data.py` first). Power Query reads it once into a staging query, then three queries take only the columns they need: the Sales fact and the Customer and Product dimensions. The Date table is added in DAX in [02-model.md](02-model.md).
+The fixed report reads the same file as the slow one, `data/sales_flat.csv` (run `python prepare_data.py` first). A staging query reads it and keeps the columns the report uses, then three queries built on it take what each table needs: the Sales fact and the Customer and Product dimensions. The Date table is added in DAX in [02-model.md](02-model.md).
 
 **Before you load anything:** File > Options and settings > Options > Current File > Data Load > untick **Auto date/time**. Do it first, so Power BI never builds its hidden date tables.
 

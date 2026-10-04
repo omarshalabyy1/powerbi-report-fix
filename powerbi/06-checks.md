@@ -2,6 +2,8 @@
 
 Every number below comes from [analysis/analysis.ipynb](../analysis/analysis.ipynb), computed with SQL straight from `data/sales_flat.csv`. **Both reports, the slow one and the fixed one, must show exactly these numbers.** If one differs, the build has a mistake; fix it before taking any timing.
 
+The slow report's `Sales PY` takes the year from the rows in each cell, so it agrees with the fixed report only where every cell shown has sales in the selected year. The check states below were confirmed in the notebook to have no empty cells (every month, subcategory and product shown has current-year sales).
+
 Small rounding note: a value ending in exactly .5 can round one unit differently in Power BI than in Python. Anything else is a real difference.
 
 ## Model
