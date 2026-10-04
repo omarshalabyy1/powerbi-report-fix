@@ -1,0 +1,75 @@
+// Fixed report: every measure, grouped by display folder.
+// Create each one on the Sales table: Table tools > New measure, paste from the name to the end of the expression.
+// Then set its format string (Measure tools > Format > Custom) and its display folder (Model view > Properties).
+
+// ===== Display folder: Sales =====
+
+// Sales Amount: revenue in US dollars, quantity times net price, from the fact columns (no calculated column).
+// Format: \$#,0
+Sales Amount =
+SUMX ( Sales, Sales[Quantity] * Sales[Net Price] )
+
+// Total Cost: cost in US dollars, quantity times unit cost.
+// Format: \$#,0
+Total Cost =
+SUMX ( Sales, Sales[Quantity] * Sales[Unit Cost] )
+
+// Margin: Sales Amount minus Total Cost.
+// Format: \$#,0
+Margin =
+[Sales Amount] - [Total Cost]
+
+// Margin %: Margin as a share of Sales Amount; blank when there are no sales.
+// Format: 0.0%
+Margin % =
+DIVIDE ( [Margin], [Sales Amount] )
+
+
+// ===== Display folder: Orders and customers =====
+
+// Orders: number of distinct orders.
+// Format: #,0
+Orders =
+DISTINCTCOUNT ( Sales[Order Key] )
+
+// Customers: number of distinct customers who bought.
+// Format: #,0
+Customers =
+DISTINCTCOUNT ( Sales[Customer Key] )
+
+// Avg Order Value: Sales Amount per order. One division, no iteration over orders.
+// Format: \$#,0.00
+Avg Order Value =
+DIVIDE ( [Sales Amount], [Orders] )
+
+
+// ===== Display folder: Time =====
+
+// Sales PY: Sales Amount for the same dates one year earlier, through the marked Date table.
+// Format: \$#,0
+Sales PY =
+CALCULATE ( [Sales Amount], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+
+// Sales YoY %: change against the previous year; blank when there is no previous year.
+// Format: 0.0%
+Sales YoY % =
+VAR CurrentSales = [Sales Amount]
+VAR PreviousSales = [Sales PY]
+RETURN
+    IF (
+        NOT ISBLANK ( PreviousSales ),
+        DIVIDE ( CurrentSales - PreviousSales, PreviousSales )
+    )
+
+
+// ===== Display folder: Rank =====
+
+// Product Rank: the product's place by Sales Amount among the products in the current filters; ties share a rank.
+// Format: 0
+Product Rank =
+VAR CurrentSales = [Sales Amount]
+RETURN
+    IF (
+        NOT ISBLANK ( CurrentSales ),
+        RANKX ( ALL ( Product[Product Name] ), [Sales Amount], CurrentSales )
+    )

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="1000" height="500" role="img" aria-label="Before and after. Before: one flat Sales table with 35 columns plus 6 calculated columns over 2.1 million rows, three hidden auto date tables, and Avg Order Value computed by iterating every order; slowest page [X] seconds, model [A] MB. After: a star schema, a 7-column Sales fact with Date, Customer and Product dimensions, and Avg Order Value as one division; slowest page [Y] seconds, model [B] MB. Both show the same numbers.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#10213A"/>
+    </linearGradient>
+    <pattern id="cols" width="11.4" height="10" patternUnits="userSpaceOnUse">
+      <rect width="1.4" height="10" fill="#94A3B8" fill-opacity="0.45"/>
+    </pattern>
+  </defs>
+  <style>
+    text { font-family: "Segoe UI", -apple-system, Helvetica, Arial, sans-serif; }
+    .title { font-size: 21px; font-weight: 700; fill: #FFFFFF; }
+    .sub { font-size: 13.5px; fill: #CBD5E1; }
+    .tag { font-size: 13px; font-weight: 700; letter-spacing: 2px; }
+    .label { font-size: 13px; fill: #E2E8F0; }
+    .small { font-size: 12px; fill: #94A3B8; }
+    .node { font-size: 13px; font-weight: 600; fill: #FFFFFF; }
+    .card { font-size: 11px; fill: #93C5FD; }
+    .code { font-family: Consolas, "Courier New", monospace; font-size: 12.5px; fill: #E2E8F0; }
+    .metric { font-size: 13px; fill: #CBD5E1; }
+    .big { font-size: 22px; font-weight: 700; }
+  </style>
+
+  <rect width="1000" height="500" rx="22" fill="url(#bg)"/>
+  <text x="30" y="48" class="title">Before and after</text>
+  <text x="30" y="72" class="sub">The same two pages and the same numbers. Only the model and the DAX changed.</text>
+
+  <!-- BEFORE -->
+  <rect x="30" y="95" width="440" height="380" rx="16" fill="#94A3B8" fill-opacity="0.05" stroke="#94A3B8" stroke-opacity="0.5"/>
+  <text x="50" y="125" class="tag" fill="#94A3B8">BEFORE</text>
+
+  <text x="50" y="155" class="label">One flat Sales table: 35 columns + 6 calculated</text>
+  <rect x="50" y="165" width="400" height="56" rx="6" fill="#94A3B8" fill-opacity="0.08" stroke="#94A3B8" stroke-opacity="0.6"/>
+  <rect x="51" y="166" width="398" height="54" fill="url(#cols)"/>
+  <text x="50" y="238" class="small">Every address and product name repeated on 2.1 million order lines</text>
+
+  <rect x="50" y="252" width="125" height="30" rx="6" fill="none" stroke="#94A3B8" stroke-opacity="0.7" stroke-dasharray="4 4"/>
+  <text x="112" y="272" class="small" text-anchor="middle">Order Date</text>
+  <rect x="187" y="252" width="125" height="30" rx="6" fill="none" stroke="#94A3B8" stroke-opacity="0.7" stroke-dasharray="4 4"/>
+  <text x="249" y="272" class="small" text-anchor="middle">Delivery Date</text>
+  <rect x="324" y="252" width="125" height="30" rx="6" fill="none" stroke="#94A3B8" stroke-opacity="0.7" stroke-dasharray="4 4"/>
+  <text x="386" y="272" class="small" text-anchor="middle">Birthday</text>
+  <text x="50" y="300" class="small">Auto date/time: a hidden date table for each date column</text>
+
+  <rect x="50" y="315" width="400" height="66" rx="8" fill="#020617" fill-opacity="0.6"/>
+  <text x="64" y="338" class="code">Avg Order Value =</text>
+  <text x="64" y="357" class="code">AVERAGEX ( VALUES ( Sales[Order Key] ),</text>
+  <text x="134" y="374" class="code">[Sales Amount] )  -- once per order</text>
+
+  <text x="50" y="418" class="metric">Slowest page</text>
+  <text x="50" y="448" class="big" fill="#E2E8F0">[X] s</text>
+  <text x="260" y="418" class="metric">Model in memory</text>
+  <text x="260" y="448" class="big" fill="#E2E8F0">[A] MB</text>
+
+  <!-- same numbers -->
+  <path d="M474 285h52" stroke="#3B82F6" stroke-width="2.5" fill="none"/>
+  <path d="M518 278l9 7-9 7" stroke="#3B82F6" stroke-width="2.5" fill="none"/>
+  <text x="500" y="312" class="small" text-anchor="middle">same</text>
+  <text x="500" y="327" class="small" text-anchor="middle">numbers</text>
+
+  <!-- AFTER -->
+  <rect x="530" y="95" width="440" height="380" rx="16" fill="#3B82F6" fill-opacity="0.07" stroke="#3B82F6" stroke-opacity="0.8"/>
+  <text x="550" y="125" class="tag" fill="#60A5FA">AFTER</text>
+
+  <path d="M750 186V166M700 218H636M800 218H864" stroke="#3B82F6" stroke-opacity="0.8" stroke-width="2" fill="none"/>
+  <text x="757" y="172" class="card">1</text>
+  <text x="757" y="183" class="card">*</text>
+  <text x="640" y="212" class="card">1</text>
+  <text x="690" y="212" class="card">*</text>
+  <text x="853" y="212" class="card">1</text>
+  <text x="804" y="212" class="card">*</text>
+
+  <rect x="700" y="186" width="100" height="64" rx="8" fill="#3B82F6" fill-opacity="0.35" stroke="#3B82F6"/>
+  <text x="750" y="213" class="node" text-anchor="middle">Sales</text>
+  <text x="750" y="233" class="card" text-anchor="middle">7 columns</text>
+
+  <rect x="700" y="136" width="100" height="30" rx="8" fill="#3B82F6" fill-opacity="0.15" stroke="#3B82F6" stroke-opacity="0.8"/>
+  <text x="750" y="156" class="node" text-anchor="middle">Date</text>
+  <rect x="550" y="203" width="86" height="30" rx="8" fill="#3B82F6" fill-opacity="0.15" stroke="#3B82F6" stroke-opacity="0.8"/>
+  <text x="593" y="223" class="node" text-anchor="middle">Customer</text>
+  <rect x="864" y="203" width="86" height="30" rx="8" fill="#3B82F6" fill-opacity="0.15" stroke="#3B82F6" stroke-opacity="0.8"/>
+  <text x="907" y="223" class="node" text-anchor="middle">Product</text>
+
+  <text x="550" y="272" class="small">Keys and numbers in the fact, names stored once in the</text>
+  <text x="550" y="289" class="small">dimensions, one marked date table, no calculated columns</text>
+
+  <rect x="550" y="315" width="400" height="66" rx="8" fill="#020617" fill-opacity="0.6"/>
+  <text x="564" y="338" class="code">Avg Order Value =</text>
+  <text x="564" y="357" class="code">DIVIDE ( [Sales Amount], [Orders] )</text>
+  <text x="564" y="374" class="code">-- one division</text>
+
+  <text x="550" y="418" class="metric">Slowest page</text>
+  <text x="550" y="448" class="big" fill="#60A5FA">[Y] s</text>
+  <text x="760" y="418" class="metric">Model in memory</text>
+  <text x="760" y="448" class="big" fill="#60A5FA">[B] MB</text>
+</svg>
