@@ -76,4 +76,4 @@ flat_rows = duckdb.sql(f"SELECT count(*) FROM '{FLAT}'").fetchone()[0]
 
 # Every sales row must survive the joins, or the reports would not match the source.
 assert flat_rows == sales_rows, f"flat file has {flat_rows:,} rows, sales has {sales_rows:,}"
-print(f"Wrote {FLAT} ({flat_rows:,} rows, {FLAT.stat().st_size / 1e6:,.0f} MB)")
+print(f"Wrote data/{FLAT.name} ({flat_rows:,} rows, {FLAT.stat().st_size / 1e6:,.0f} MB)")

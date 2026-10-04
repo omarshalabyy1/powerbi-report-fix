@@ -4,7 +4,7 @@
 
 # Power BI report fix
 
-**<!--n:sales_rows-->2,098,633<!--/n--> sales rows: slowest page from <!--n:slowest_before-->[X]<!--/n--> to <!--n:slowest_after-->[Y]<!--/n--> seconds, model size down <!--n:size_down-->[Z]<!--/n-->%, every number unchanged.**
+**<!--n:headline-->2,098,633 sales rows: a 35-column flat table rebuilt as a star schema, every number unchanged.<!--/n-->**
 
 ## The problem
 
@@ -28,17 +28,19 @@ Slow reports usually get that way for the same reasons: one wide table pulled st
 
 ## The result
 
-| | Before | After | Change |
-|---|---|---|---|
-| Slowest page | <!--n:slowest_before-->[X]<!--/n--> s | <!--n:slowest_after-->[Y]<!--/n--> s | <!--n:slowest_change-->[ ]<!--/n--> |
-| Overview page | <!--n:overview_before-->[ ]<!--/n--> s | <!--n:overview_after-->[ ]<!--/n--> s | <!--n:overview_change-->[ ]<!--/n--> |
-| Products page | <!--n:products_before-->[ ]<!--/n--> s | <!--n:products_after-->[ ]<!--/n--> s | <!--n:products_change-->[ ]<!--/n--> |
-| Model in memory | <!--n:size_before-->[A]<!--/n--> MB | <!--n:size_after-->[B]<!--/n--> MB | down <!--n:size_down-->[Z]<!--/n-->% |
-| Columns in the model | 41 (35 + 6 calculated) | 17 (Sales 7, Date 4, Product 4, Customer 2) | |
-| Hidden date tables | 3 | 0 | |
-| Numbers on the pages | | | identical |
+| | Before | After |
+|---|---|---|
+| Tables | 1 flat table | 4: a Sales fact with Date, Customer and Product |
+| Columns in the model | 41 (35 + 6 calculated) | 17 (Sales 7, Date 4, Product 4, Customer 2) |
+| Calculated columns | 6 | 0 |
+| Hidden date tables | 3 (auto date/time) | 0 |
+| Numbers on the pages | as in [`06-checks.md`](powerbi/06-checks.md) | identical |
 
-Timed in Power BI Desktop with Performance Analyzer from a cold cache, model size from DAX Studio's VertiPaq Analyzer. The method is in [`measurements/README.md`](measurements/README.md), and every number in this table is worked out in [`analysis/analysis.ipynb`](analysis/analysis.ipynb) from the raw exports in `measurements/`.
+<!--n:timings-->
+
+Page load times and model size are measured next, in Power BI Desktop, from a cold cache, with the method in [`measurements/README.md`](measurements/README.md). The notebook reads the exports and writes the before and after numbers here.
+
+<!--/n-->
 
 ## Screenshots
 
