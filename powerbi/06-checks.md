@@ -1,8 +1,8 @@
 # 6. Checks: the numbers each page must show
 
-Every number below comes from [analysis/analysis.ipynb](../analysis/analysis.ipynb), computed with SQL straight from `data/sales_flat.csv`. **Both reports, the slow one and the fixed one, must show exactly these numbers.** If one differs, the build has a mistake; fix it before taking any timing.
+Written by [analysis/analysis.ipynb](../analysis/analysis.ipynb) from SQL on `data/sales_flat.csv`; do not edit by hand. **Both reports, the slow one and the fixed one, must show exactly these numbers.** If one differs, the build has a mistake; fix it before taking any timing.
 
-The slow report's `Sales PY` takes the year from the rows in each cell, so it agrees with the fixed report only where every cell shown has sales in the selected year. The check states below were confirmed in the notebook to have no empty cells (every month, subcategory and product shown has current-year sales).
+The slow report's `Sales PY` takes the year from the rows in each cell, so it agrees with the fixed report only where every cell shown has sales in the selected year. The notebook confirms the check states below have no empty cells (every month, subcategory and product shown has current-year sales).
 
 Small rounding note: a value ending in exactly .5 can round one unit differently in Power BI than in Python. Anything else is a real difference.
 
@@ -113,4 +113,4 @@ Set these three slicers, check the cards, then set the slicers back to the defau
 | Cameras and camcorders | $18,765,677 | -21.1% | 58.2% |
 | Audio | $6,847,569 | -10.4% | 55.1% |
 | Games and Toys | $2,738,246 | -13.2% | 52.0% |
-| **Total** | **$318,425,878** | **-28.4%** | **56.0%** |
+| Total | $318,425,878 | -28.4% | 56.0% |

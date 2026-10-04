@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200" width="1000" height="200" role="img" aria-label="Power BI report fix: a slow sales report rebuilt as a star schema with clean DAX. Slowest page from [X] to [Y] seconds, the same numbers.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200" width="1000" height="200" role="img" aria-label="Power BI report fix: a slow sales report rebuilt as a star schema with clean DAX, with the same numbers.">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0B1220"/>
@@ -15,7 +15,7 @@
   <rect width="1000" height="200" rx="22" fill="url(#bg)"/>
   <text x="40" y="78" class="name">Power BI report fix</text>
   <text x="40" y="112" class="line">A slow sales report rebuilt as a star schema with clean DAX.</text>
-  <text x="40" y="142" class="result">Slowest page from [X] s to [Y] s, with the same numbers.</text>
+  <text x="40" y="142" class="result">Slowest page from <!--n:slowest_before-->[X]<!--/n--> s to <!--n:slowest_after-->[Y]<!--/n--> s, with the same numbers.</text>
 
   <!-- the star -->
   <g stroke="#3B82F6" stroke-width="2" fill="none" stroke-opacity="0.8">
