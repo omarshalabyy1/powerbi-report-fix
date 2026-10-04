@@ -23,7 +23,7 @@ Follow it top to bottom: the slow report first, then the fixed one, then the tim
 7. **Measures** (`before/03-measures.dax`): the ten measures in file order, each with the format string in its comment.
    **Check:** drop Sales Amount into a temporary card, display units None: <!--n:sales_all-->$2,127,928,962<!--/n--> (all years). Delete the card.
 8. **Theme** ([05-theme.json](05-theme.json)): View > Themes > Browse for themes > pick the file.
-   **Check:** the page background turns light grey-blue (#F4F6FB).
+   **Check:** the page background turns the theme's light grey-blue page colour.
 9. **Page Overview** ([04-pages.md](04-pages.md)): canvas 16:9, then P1-T, P1-S1 to P1-S3, P1-V1 to P1-V9 in order, with the Sales fields from the table in `before/README.md`. Year slicer on 2023.
    **Check:** Sales Amount <!--n:sales_2023-->$318,425,878<!--/n--> · Sales YoY % <!--n:yoy_2023_card-->-28.4%<!--/n--> · Margin % <!--n:margin_2023-->56.0%<!--/n--> · Orders <!--n:orders_2023-->159,695<!--/n--> · Avg Order Value <!--n:aov_2023-->$1,993.96<!--/n--> · Customers <!--n:customers_2023-->62,337<!--/n--> · top category bar <!--n:top_category-->Computers<!--/n-->.
 10. **Page Products**: copy P1-T and the three slicers to a new page (choose **Sync**), then P2-V1 and P2-V2.
