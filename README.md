@@ -48,8 +48,6 @@ Added once the reports are built.
 
 ## Run it
 
-New client? See [docs/new-client.md](docs/new-client.md).
-
 ```bash
 pip install -r requirements.txt
 python data/demo/prepare_data.py
