@@ -3,6 +3,10 @@
 </p>
 
 <p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1200&color=2DD4BF&center=true&vCenter=true&width=760&lines=Slow+report+in.+Star+schema+out.;Measure.+Model.+DAX.+Check.+Hand+over.;Every+number+unchanged" alt="Slow report in. Star schema out.">
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Power_BI-DAX_%26_Power_Query-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" alt="Power BI, DAX and Power Query">
   <img src="https://img.shields.io/badge/Python-pandas-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python and pandas">
   <img src="https://img.shields.io/badge/DuckDB-Checks-FFF000?style=for-the-badge&logo=duckdb&logoColor=black" alt="DuckDB">
@@ -32,6 +36,10 @@ Slow reports usually get that way for the same reasons: one wide table pulled st
 
 ## 📈 The result
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/221352987-68da234d-4d62-4e9d-9d7f-098dc657c2dc.gif" width="100" alt="Moving chart">
+</p>
+
 | | Before | After |
 |---|---|---|
 | Tables | 1 flat table | 4: a Sales fact with Date, Customer and Product |
@@ -52,6 +60,10 @@ Added once the reports are built.
 
 ## ▶️ Run it
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" width="100" alt="Code">
+</p>
+
 ```bash
 pip install -r requirements.txt
 python data/demo/prepare_data.py
@@ -68,3 +80,7 @@ python data/demo/publish.py
 ## 🗂️ Data
 
 Contoso sales data made with SQLBI's [Contoso Data Generator V2](https://github.com/sql-bi/Contoso-Data-Generator-V2) (the ready-made 1M set, MIT licence): generated, not real, with <!--n:sales_rows-->2,098,633<!--/n--> order lines from <!--n:orders-->875,901<!--/n--> orders between <!--n:first_month-->January 2015<!--/n--> and <!--n:last_month-->April 2024<!--/n-->. `data/demo/prepare_data.py` joins its sales, customer, product and store tables into the one flat export the slow report is built on.
+
+<p align="center">
+  <img width="100%" src="docs/footer.svg" alt="The same numbers, in a report people open again.">
+</p>

@@ -4,15 +4,30 @@
       <stop offset="0" stop-color="#0B1220"/>
       <stop offset="1" stop-color="#10213A"/>
     </linearGradient>
+      <radialGradient id="jrGlowA" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7C3AED" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="jrGlowB" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#14B8A6" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#14B8A6" stop-opacity="0"/>
+    </radialGradient>
   </defs>
   <style>
     text { font-family: "Segoe UI", -apple-system, Helvetica, Arial, sans-serif; }
     .name { font-size: 34px; font-weight: 700; fill: #FFFFFF; }
     .line { font-size: 16px; fill: #CBD5E1; }
     .result { font-size: 16px; font-weight: 600; fill: #60A5FA; }
+      .wave { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 2 10; animation: flow 6s linear infinite; }
+    @keyframes flow { to { stroke-dashoffset: -120; } }
   </style>
 
   <rect width="1000" height="200" rx="22" fill="url(#bg)"/>
+  <circle cx="880" cy="60" r="190" fill="url(#jrGlowA)"/>
+  <circle cx="160" cy="180" r="170" fill="url(#jrGlowB)"/>
+  <path class="wave" stroke="#2DD4BF" stroke-opacity="0.5" d="M24 189 C 200 184, 330 193, 500 189 S 800 185, 976 189"/>
+  <path class="wave" stroke="#A78BFA" stroke-opacity="0.4" style="animation-duration:9s" d="M40 195 C 220 191, 360 198, 520 195 S 820 192, 960 195"/>
+
   <text x="40" y="78" class="name">Power BI report fix</text>
   <text x="40" y="112" class="line">A slow sales report rebuilt as a star schema with clean DAX.</text>
   <text x="40" y="142" class="result"><!--n:headline_short-->2,098,633 sales rows, the same numbers before and after.<!--/n--></text>
