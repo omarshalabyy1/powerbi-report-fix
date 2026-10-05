@@ -77,6 +77,16 @@ python data/demo/publish.py
 2. `config.py` checks `config/client.yaml` and the export; the notebook computes every check number, writes `output/sales.csv` (what the fixed report reads), `powerbi/06-checks.md` and `output/numbers.json`; `theme.py` writes the Power BI theme from the config; `data/demo/publish.py` (demo only) writes the numbers into this README, the diagrams and the portfolio site's card.
 3. Build and time both reports in Power BI Desktop with [`powerbi/08-build-checklist.md`](powerbi/08-build-checklist.md): click by click, with the numbers to check at each step, ending with the timing exports in `data/input/` ([method](docs/measuring.md)). Then rerun the notebook and `data/demo/publish.py`.
 
+## 🏗️ For engineers
+
+Every file the scripts and the notebook read and write, and where each report gets its data:
+
+![Data flow, step by step](docs/data-flow.svg)
+
+The model before and after the fix, with every column:
+
+![The Power BI model, before and after](docs/data-model.svg)
+
 ## 🗂️ Data
 
 Contoso sales data made with SQLBI's [Contoso Data Generator V2](https://github.com/sql-bi/Contoso-Data-Generator-V2) (the ready-made 1M set, MIT licence): generated, not real, with <!--n:sales_rows-->2,098,633<!--/n--> order lines from <!--n:orders-->875,901<!--/n--> orders between <!--n:first_month-->January 2015<!--/n--> and <!--n:last_month-->April 2024<!--/n-->. `data/demo/prepare_data.py` joins its sales, customer, product and store tables into the one flat export the slow report is built on.

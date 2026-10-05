@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 853" width="1000" height="853" role="img" aria-label="Before and after, the Power BI model. Before: one flat Sales table of 2,098,633 rows with all 35 columns of the export plus 6 calculated columns (Line Amount, Line Cost, Line Margin, Year, Month, Month Number), and three hidden date tables that auto date/time builds for Order Date, Delivery Date and Birthday; no relationships. After: a star schema. The Sales fact (2,098,633 rows) keeps 7 columns, keys and numbers only, and joins many to one to Product (2,517 rows) on Product Key, Customer (88,063) on Customer Key and Date (3,653 days, built in DAX and marked as the date table) on Order Date. 41 columns become 17.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="0.55" stop-color="#10213A"/>
+      <stop offset="1" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#64748B"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: "Segoe UI", -apple-system, Helvetica, Arial, sans-serif; }
+    .title { font-size: 21px; font-weight: 700; fill: #FFFFFF; }
+    .sub { font-size: 13.5px; fill: #CBD5E1; }
+    .layer { font-size: 14px; font-weight: 700; fill: #0B1220; }
+    .where { font-size: 12px; fill: #94A3B8; }
+    .name { font-size: 13px; fill: #F1F5F9; }
+    .count { font-size: 11.5px; fill: #94A3B8; }
+    .note { font-size: 12px; fill: #CBD5E1; }
+    .col { font-size: 12.5px; fill: #E2E8F0; }
+    .key { font-size: 11px; font-weight: 700; }
+    .edge { fill: none; stroke: #64748B; stroke-width: 1.4; }
+  </style>
+  <rect width="1000" height="853" rx="22" fill="url(#bg)"/>
+  <text x="40" y="50" class="title">The Power BI model, before and after</text>
+  <text x="40" y="74" class="sub">The same 2,098,633 order lines. 41 columns in one table become 17 columns in a star.</text>
+  <text x="40" y="120" class="layer" style="fill:#F1F5F9">Before: one flat table, no relationships</text>
+  <rect x="40" y="132" width="920" height="287" rx="10" fill="#13233D" stroke="#2563EB" stroke-width="1.5"/>
+  <path d="M40 142 a10 10 0 0 1 10 -10 h900 a10 10 0 0 1 10 10 v36 h-920 Z" fill="#2563EB"/>
+  <text x="52" y="152" class="name" font-weight="700" style="fill:#FFFFFF">Sales</text><text x="52" y="169" class="count" style="fill:#FFFFFF">2,098,633 rows · 35 columns from the export + 6 calculated</text>
+  <text x="52" y="193" class="col">Order Key</text>
+  <text x="52" y="214" class="col">Line Number</text>
+  <text x="52" y="235" class="col">Order Date</text>
+  <text x="52" y="256" class="col">Delivery Date</text>
+  <text x="52" y="277" class="col">Customer Key</text>
+  <text x="52" y="298" class="col">Customer Name</text>
+  <text x="52" y="319" class="col">Gender</text>
+  <text x="52" y="340" class="col">Birthday</text>
+  <text x="52" y="361" class="col">Age</text>
+  <text x="52" y="382" class="col">Occupation</text>
+  <text x="52" y="403" class="col">Company</text>
+  <text x="282" y="193" class="col">Street Address</text>
+  <text x="282" y="214" class="col">City</text>
+  <text x="282" y="235" class="col">State</text>
+  <text x="282" y="256" class="col">Zip Code</text>
+  <text x="282" y="277" class="col">Country</text>
+  <text x="282" y="298" class="col">Continent</text>
+  <text x="282" y="319" class="col">Store Key</text>
+  <text x="282" y="340" class="col">Store</text>
+  <text x="282" y="361" class="col">Store Country</text>
+  <text x="282" y="382" class="col">Store State</text>
+  <text x="282" y="403" class="col">Product Key</text>
+  <text x="512" y="193" class="col">Product Code</text>
+  <text x="512" y="214" class="col">Product Name</text>
+  <text x="512" y="235" class="col">Manufacturer</text>
+  <text x="512" y="256" class="col">Brand</text>
+  <text x="512" y="277" class="col">Color</text>
+  <text x="512" y="298" class="col">Category</text>
+  <text x="512" y="319" class="col">Subcategory</text>
+  <text x="512" y="340" class="col">Quantity</text>
+  <text x="512" y="361" class="col">Unit Price</text>
+  <text x="512" y="382" class="col">Net Price</text>
+  <text x="512" y="403" class="col">Unit Cost</text>
+  <text x="742" y="193" class="col">Currency Code</text>
+  <text x="742" y="214" class="col">Exchange Rate</text>
+  <text x="742" y="235" class="col">Line Amount</text><text x="947" y="235" class="key" fill="#FBBF24" text-anchor="end">calc</text>
+  <text x="742" y="256" class="col">Line Cost</text><text x="947" y="256" class="key" fill="#FBBF24" text-anchor="end">calc</text>
+  <text x="742" y="277" class="col">Line Margin</text><text x="947" y="277" class="key" fill="#FBBF24" text-anchor="end">calc</text>
+  <text x="742" y="298" class="col">Year</text><text x="947" y="298" class="key" fill="#FBBF24" text-anchor="end">calc</text>
+  <text x="742" y="319" class="col">Month</text><text x="947" y="319" class="key" fill="#FBBF24" text-anchor="end">calc</text>
+  <text x="742" y="340" class="col">Month Number</text><text x="947" y="340" class="key" fill="#FBBF24" text-anchor="end">calc</text>
+  <rect x="40" y="433" width="300" height="30" rx="8" fill="#13233D" stroke="#94A3B8" stroke-dasharray="5 4"/><text x="52" y="453" class="note">hidden date table for Order Date</text>
+  <rect x="350" y="433" width="300" height="30" rx="8" fill="#13233D" stroke="#94A3B8" stroke-dasharray="5 4"/><text x="362" y="453" class="note">hidden date table for Delivery Date</text>
+  <rect x="660" y="433" width="300" height="30" rx="8" fill="#13233D" stroke="#94A3B8" stroke-dasharray="5 4"/><text x="672" y="453" class="note">hidden date table for Birthday</text>
+  <text x="40" y="507" class="layer" style="fill:#F1F5F9">After: a star schema, auto date/time off</text>
+  <path d="M370 655.5 C325.0 655.5 325.0 586.5 280 586.5" class="edge" stroke="#94A3B8"/>
+  <text x="360" y="650.5" class="key" fill="#CBD5E1" text-anchor="end">*</text><text x="288" y="581.5" class="key" fill="#CBD5E1" text-anchor="start">1</text>
+  <path d="M630 632.5 C675.0 632.5 675.0 754.5 720 754.5" class="edge" stroke="#94A3B8"/>
+  <text x="640" y="627.5" class="key" fill="#CBD5E1" text-anchor="start">*</text><text x="712" y="749.5" class="key" fill="#CBD5E1" text-anchor="end">1</text>
+  <path d="M630 609.5 C675.0 609.5 675.0 586.5 720 586.5" class="edge" stroke="#94A3B8"/>
+  <text x="640" y="604.5" class="key" fill="#CBD5E1" text-anchor="start">*</text><text x="712" y="581.5" class="key" fill="#CBD5E1" text-anchor="end">1</text>
+  <rect x="370" y="529" width="260" height="215" rx="10" fill="#13233D" stroke="#2563EB" stroke-width="1.5"/>
+  <path d="M370 539 a10 10 0 0 1 10 -10 h240 a10 10 0 0 1 10 10 v36 h-260 Z" fill="#2563EB"/>
+  <text x="382" y="549" class="name" font-weight="700" style="fill:#FFFFFF">Sales</text><text x="382" y="566" class="count" style="fill:#FFFFFF">2,098,633 rows</text>
+  <text x="382" y="591" class="col">Order Key</text>
+  <text x="382" y="614" class="col">Order Date</text><text x="618" y="614" class="key" fill="#93C5FD" text-anchor="end">FK</text>
+  <text x="382" y="637" class="col">Customer Key</text><text x="618" y="637" class="key" fill="#93C5FD" text-anchor="end">FK</text>
+  <text x="382" y="660" class="col">Product Key</text><text x="618" y="660" class="key" fill="#93C5FD" text-anchor="end">FK</text>
+  <text x="382" y="683" class="col">Quantity</text>
+  <text x="382" y="706" class="col">Net Price</text>
+  <text x="382" y="729" class="col">Unit Cost</text>
+  <rect x="40" y="529" width="240" height="146" rx="10" fill="#13233D" stroke="#14B8A6" stroke-width="1.5"/>
+  <path d="M40 539 a10 10 0 0 1 10 -10 h220 a10 10 0 0 1 10 10 v36 h-240 Z" fill="#14B8A6"/>
+  <text x="52" y="549" class="name" font-weight="700" style="fill:#0B1220">Product</text><text x="52" y="566" class="count" style="fill:#0B1220">2,517 rows</text>
+  <text x="52" y="591" class="col">Product Key</text><text x="268" y="591" class="key" fill="#FBBF24" text-anchor="end">PK</text>
+  <text x="52" y="614" class="col">Product Name</text>
+  <text x="52" y="637" class="col">Category</text>
+  <text x="52" y="660" class="col">Subcategory</text>
+  <rect x="720" y="529" width="240" height="146" rx="10" fill="#13233D" stroke="#14B8A6" stroke-width="1.5"/>
+  <path d="M720 539 a10 10 0 0 1 10 -10 h220 a10 10 0 0 1 10 10 v36 h-240 Z" fill="#14B8A6"/>
+  <text x="732" y="549" class="name" font-weight="700" style="fill:#0B1220">Date</text><text x="732" y="566" class="count" style="fill:#0B1220">3,653 days, DAX</text>
+  <text x="732" y="591" class="col">Date</text><text x="948" y="591" class="key" fill="#FBBF24" text-anchor="end">PK</text>
+  <text x="732" y="614" class="col">Year</text>
+  <text x="732" y="637" class="col">Month Number</text>
+  <text x="732" y="660" class="col">Month</text>
+  <rect x="720" y="697" width="240" height="100" rx="10" fill="#13233D" stroke="#14B8A6" stroke-width="1.5"/>
+  <path d="M720 707 a10 10 0 0 1 10 -10 h220 a10 10 0 0 1 10 10 v36 h-240 Z" fill="#14B8A6"/>
+  <text x="732" y="717" class="name" font-weight="700" style="fill:#0B1220">Customer</text><text x="732" y="734" class="count" style="fill:#0B1220">88,063 rows</text>
+  <text x="732" y="759" class="col">Customer Key</text><text x="948" y="759" class="key" fill="#FBBF24" text-anchor="end">PK</text>
+  <text x="732" y="782" class="col">Country</text>
+  <text x="40" y="701" class="where">Sales keeps keys and numbers only;</text>
+  <text x="40" y="719" class="where">each name is stored once, in its dimension.</text>
+  <text x="40" y="831" class="where">PK primary key · FK foreign key · 1 to * one dimension row to many fact rows, single direction · calc calculated column</text>
+</svg>
