@@ -2,9 +2,13 @@
   <img width="100%" src="docs/header.svg" alt="Power BI report fix: a slow sales report rebuilt as a star schema with clean DAX, with the same numbers.">
 </p>
 
-# Power BI report fix
+<p align="center">
+  <img src="https://img.shields.io/badge/Power_BI-DAX_%26_Power_Query-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" alt="Power BI, DAX and Power Query">
+  <img src="https://img.shields.io/badge/Python-pandas-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python and pandas">
+  <img src="https://img.shields.io/badge/DuckDB-Checks-FFF000?style=for-the-badge&logo=duckdb&logoColor=black" alt="DuckDB">
+</p>
 
-**<!--n:headline-->2,098,633 sales rows: a 35-column flat table rebuilt as a star schema, every number unchanged.<!--/n-->**
+<h3 align="center"><!--n:headline-->2,098,633 sales rows: a 35-column flat table rebuilt as a star schema, every number unchanged.<!--/n--></h3>
 
 ## The problem
 
@@ -12,7 +16,7 @@ The sales report takes ages to open, so people stop using it and go back to Exce
 
 Slow reports usually get that way for the same reasons: one wide table pulled straight from an export, Power BI's automatic date tables left on, calculated columns for every small sum, and measures that work row by row. The slow report here is built exactly that way on purpose (`powerbi/before/`), on <!--n:rows_million-->2.1 million<!--/n--> order lines, so the fix can be measured.
 
-## The fix
+## 🛠️ The fix
 
 <p align="center">
   <img width="100%" src="docs/how-it-works.svg" alt="How it works: 01 Measure, 02 Model, 03 DAX, 04 Check, 05 Hand over.">
@@ -26,7 +30,7 @@ Slow reports usually get that way for the same reasons: one wide table pulled st
 - **DAX.** No calculated columns: amounts are computed inside the measures. `Avg Order Value` is one division instead of a loop over <!--n:orders_check-->159,695<!--/n--> orders in 2023; counts use `DISTINCTCOUNT` instead of building a table to count it; `Sales PY` uses `SAMEPERIODLASTYEAR` on the date table; results that are used twice are kept in variables. All ten measures are in [`powerbi/03-measures.dax`](powerbi/03-measures.dax), next to the slow versions in [`powerbi/before/03-measures.dax`](powerbi/before/03-measures.dax).
 - **Check.** Every card, chart and table is compared with numbers computed in SQL straight from the source ([`powerbi/06-checks.md`](powerbi/06-checks.md)). Both reports show the same numbers, for example <!--n:sales_check-->$318,425,878<!--/n--> of sales in 2023, down <!--n:yoy_check_abs-->28.4%<!--/n--> on 2022, at a <!--n:margin_check-->56.0%<!--/n--> margin.
 
-## The result
+## 📈 The result
 
 | | Before | After |
 |---|---|---|
@@ -42,11 +46,11 @@ Page load times and model size are measured next, in Power BI Desktop, from a co
 
 <!--/n-->
 
-## Screenshots
+## 📸 Screenshots
 
 Added once the reports are built.
 
-## Run it
+## ▶️ Run it
 
 ```bash
 pip install -r requirements.txt
@@ -61,6 +65,6 @@ python data/demo/publish.py
 2. `config.py` checks `config/client.yaml` and the export; the notebook computes every check number, writes `output/sales.csv` (what the fixed report reads), `powerbi/06-checks.md` and `output/numbers.json`; `theme.py` writes the Power BI theme from the config; `data/demo/publish.py` (demo only) writes the numbers into this README, the diagrams and the portfolio site's card.
 3. Build and time both reports in Power BI Desktop with [`powerbi/08-build-checklist.md`](powerbi/08-build-checklist.md): click by click, with the numbers to check at each step, ending with the timing exports in `data/input/` ([method](docs/measuring.md)). Then rerun the notebook and `data/demo/publish.py`.
 
-## Data
+## 🗂️ Data
 
 Contoso sales data made with SQLBI's [Contoso Data Generator V2](https://github.com/sql-bi/Contoso-Data-Generator-V2) (the ready-made 1M set, MIT licence): generated, not real, with <!--n:sales_rows-->2,098,633<!--/n--> order lines from <!--n:orders-->875,901<!--/n--> orders between <!--n:first_month-->January 2015<!--/n--> and <!--n:last_month-->April 2024<!--/n-->. `data/demo/prepare_data.py` joins its sales, customer, product and store tables into the one flat export the slow report is built on.
