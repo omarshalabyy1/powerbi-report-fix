@@ -31,4 +31,4 @@ Start with [08-build-checklist.md](08-build-checklist.md): it walks both reports
 | Build order | [08-build-checklist.md](08-build-checklist.md) | [08-build-checklist.md](08-build-checklist.md) |
 | Saved as | `before/sales-before.pbip` | `sales-after.pbip` |
 
-Screenshots of the fixed report go in `screenshots/` (`overview.png`, `products.png`); the timings in [../measurements/](../measurements/README.md).
+Screenshots of the fixed report go in `screenshots/` (`overview.png`, `products.png`); the timing exports in `data/input/` ([method](../docs/measuring.md)).

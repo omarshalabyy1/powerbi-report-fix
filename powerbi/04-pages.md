@@ -13,7 +13,7 @@ Rename the page **Overview** (double-click the tab).
 | ID | Visual | X | Y | W | H | Fields (well: field) | Format |
 |---|---|---|---|---|---|---|---|
 | P1-T | Text box | 20 | 10 | 600 | 50 | Text: "Sales overview" | Segoe UI Semibold, 20, colour: Theme colour 2 (navy) |
-| P1-S1 | Slicer | 700 | 10 | 180 | 60 | Field: `Date[Year]` | Slicer settings > Style: **Dropdown**; Selection: **Single select** on; select **2023**. Header on |
+| P1-S1 | Slicer | 700 | 10 | 180 | 60 | Field: `Date[Year]` | Slicer settings > Style: **Dropdown**; Selection: **Single select** on; select **<!--n:check_year-->2023<!--/n-->** (`report.check_year`). Header on |
 | P1-S2 | Slicer | 890 | 10 | 180 | 60 | Field: `Customer[Country]` | Style: Dropdown; Single select off (Ctrl+click picks several); "Select all" option off; nothing selected. Header on |
 | P1-S3 | Slicer | 1080 | 10 | 180 | 60 | Field: `Product[Category]` | As P1-S2 |
 | P1-V1 | Card | 20 | 80 | 200 | 100 | Fields: Sales Amount | Callout value: display units **None**; Category label on (shows the measure name); Title off |
@@ -43,8 +43,8 @@ Add a page (+ at the bottom) and rename it **Products**. Copy P1-T and the three
 
 ## Sync slicers
 
-View > Sync slicers. For each of Year, Country and Category: **Sync** and **Visible** ticked on Overview and Products. Picking 2022 on one page then shows 2022 on the other.
+View > Sync slicers. For each of Year, Country and Category: **Sync** and **Visible** ticked on Overview and Products. Picking a year on one page then shows it on the other.
 
 ## Before you take screenshots or timings
 
-Set the slicers back to the default: Year 2023, Country and Category with nothing selected, nothing clicked. The numbers in [06-checks.md](06-checks.md) are for this state.
+Set the slicers back to the default: Year <!--n:check_year-->2023<!--/n-->, Country and Category with nothing selected, nothing clicked. The numbers in [06-checks.md](06-checks.md) are for this state.

@@ -51,13 +51,13 @@ Column tools > Format, for each column:
 | Column | Data type | Format | Why |
 |---|---|---|---|
 | `Date[Date]` | Date | `yyyy-mm-dd` | Date only, no time, so it matches `Sales[Order Date]` |
-| `Date[Year]` | Whole number | `0` | The slicer shows 2023, not 2,023 |
+| `Date[Year]` | Whole number | `0` | The slicer shows a year without a thousands separator |
 | `Date[Month Number]` | Whole number | `0` | Sort key only (hidden) |
 | `Date[Month]` | Text | none | Jan to Dec, sorted by Month Number |
 | `Sales[Order Date]` | Date | `yyyy-mm-dd` | Hidden; joins to `Date[Date]` |
 | `Sales[Order Key]`, `Sales[Customer Key]`, `Sales[Product Key]`, `Customer[Customer Key]`, `Product[Product Key]` | Whole number | `0` | Keys, hidden |
 | `Sales[Quantity]` | Whole number | `#,0` | Hidden; used by the measures |
-| `Sales[Net Price]`, `Sales[Unit Cost]` | Decimal number | `\$#,0.00` | Hidden; used by the measures |
+| `Sales[Net Price]`, `Sales[Unit Cost]` | Decimal number | `client.currency` + `#,0.00` | Hidden; used by the measures |
 
 ## Relationships
 

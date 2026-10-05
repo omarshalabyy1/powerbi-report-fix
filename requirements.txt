@@ -1,4 +1,5 @@
 duckdb
 pandas
+pyyaml
 py7zr
 jupyter

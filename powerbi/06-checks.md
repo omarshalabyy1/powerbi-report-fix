@@ -1,8 +1,8 @@
-# 6. Checks: the numbers each page must show
+# 6. Checks: the numbers each page must show (Contoso sales)
 
-Written by [analysis/analysis.ipynb](../analysis/analysis.ipynb) from SQL on `data/sales_flat.csv`; do not edit by hand. **Both reports, the slow one and the fixed one, must show exactly these numbers.** If one differs, the build has a mistake; fix it before taking any timing.
+Written by [analysis/analysis.ipynb](../analysis/analysis.ipynb) from SQL on `data/input/sales_flat.csv`; do not edit by hand. **Both reports, the slow one and the fixed one, must show exactly these numbers.** If one differs, the build has a mistake; fix it before taking any timing.
 
-The slow report's `Sales PY` takes the year from the rows in each cell, so it agrees with the fixed report only where every cell shown has sales in the selected year. The notebook confirms the check states below have no empty cells (every month, subcategory and product shown has current-year sales).
+Checked cells with no sales in the selected year: 0 (months 0, months in the second check 0, subcategories 0, products sold only the year before 0). The demo's slow `Sales PY` takes the year from the rows in each cell, so it matches the fixed report only where this count is 0.
 
 Small rounding note: a value ending in exactly .5 can round one unit differently in Power BI than in Python. Anything else is a real difference.
 

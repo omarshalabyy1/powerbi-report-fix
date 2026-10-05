@@ -1,0 +1,40 @@
+# Everything a client changes. Read only through config.py (load_config).
+# A key exists here only if something reads it. There are no secrets, so there is no .env.
+
+client:
+  name: Contoso sales                # the heading of powerbi/06-checks.md
+  currency: "$"                      # printed before every amount (notebook, powerbi/06-checks.md)
+
+inputs:                              # the files in data/input/ (columns and examples: data/input/README.md)
+  flat: sales_flat.csv               # the flat export of the report's fact table, one row per order line
+
+columns:                             # standard name: the header the client's flat export uses for it
+  order_key: Order Key
+  order_date: Order Date
+  customer_key: Customer Key
+  country: Country
+  product_key: Product Key
+  product_name: Product Name
+  category: Category
+  subcategory: Subcategory
+  quantity: Quantity
+  net_price: Net Price
+  unit_cost: Unit Cost
+
+measurements:                        # Performance Analyzer exports in data/input/: before-<page>.json, after-<page>.json
+  pages: [overview, products]        # one per report page; plus before.vpax and after.vpax (docs/measuring.md)
+
+report:
+  title: Power BI report fix         # the Power BI theme name (python theme.py)
+  check_year: 2023                   # the year every check uses, compared with the year before
+  second_check:                      # a filtered state that proves the numbers still match
+    year: 2022
+    country: Germany
+    category: Computers
+  colours:                           # the Power BI theme (python theme.py)
+    data: ["#2563EB", "#0E1630", "#8DB0FF", "#4A5675", "#1D4FD7", "#C7D7FE"]   # 1st = main series
+    text: "#0E1630"
+    muted: "#4A5675"
+    page: "#F4F6FB"
+    line: "#E2E7F1"
+    danger: "#C2410C"

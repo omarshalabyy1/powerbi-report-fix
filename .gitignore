@@ -1,3 +1,6 @@
-data/
+data/input/*.csv
+data/demo/raw/
+data/demo/*.7z
+output/
 .ipynb_checkpoints/
 __pycache__/

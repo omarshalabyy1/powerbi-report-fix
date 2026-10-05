@@ -13,7 +13,7 @@ Applied steps: Source (read the CSV as UTF-8), Headers (first row becomes header
 ```m
 let
     Source = Csv.Document(
-        File.Contents("C:\Users\DELL\GitHub\powerbi-report-fix\data\sales_flat.csv"),
+        File.Contents("C:\Users\DELL\GitHub\powerbi-report-fix\data\input\sales_flat.csv"),
         [Delimiter = ",", Columns = 35, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
     ),
     Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),

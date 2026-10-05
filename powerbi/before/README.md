@@ -9,7 +9,7 @@ This report is slow on purpose. It is built the way slow sales reports usually g
 | One flat table, all <!--n:flat_columns-->35<!--/n--> columns | Every customer address, birthday and product name is stored again on each of the <!--n:rows_million-->2.1 million<!--/n--> order lines. Power BI stores each column separately, and long text columns with many different values take the most space. |
 | Auto date/time left on | Power BI quietly builds a hidden date table for every date column (Order Date, Delivery Date, Birthday), each covering every day between the earliest and latest date. |
 | Six calculated columns | `Line Amount`, `Line Cost` and `Line Margin` store a decimal for every row, values a measure could compute at query time. |
-| `AVERAGEX ( VALUES ( Sales[Order Key] ), [Sales Amount] )` | Recalculates Sales Amount once per order (<!--n:orders_2023-->159,695<!--/n--> orders in 2023) instead of one division. |
+| `AVERAGEX ( VALUES ( Sales[Order Key] ), [Sales Amount] )` | Recalculates Sales Amount once per order (<!--n:orders_check-->159,695<!--/n--> orders in 2023) instead of one division. |
 | `COUNTROWS ( SUMMARIZE ( ... ) )` | Builds a table of keys just to count it, where `DISTINCTCOUNT` does it directly. |
 | `IF ( [Sales Amount] = 0, ..., [Margin] / [Sales Amount] )` | Evaluates the same measure several times instead of once into a variable. |
 

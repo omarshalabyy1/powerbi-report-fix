@@ -1,6 +1,7 @@
 // Fixed report: every measure, grouped by display folder.
 // Create each one on the Sales table: Table tools > New measure, paste from the name to the end of the expression.
 // Then set its format string (Measure tools > Format > Custom) and its display folder (Model view > Properties).
+// Amount formats start with client.currency from config/client.yaml, in quotes: a label EGP gives "EGP "#,0.
 //
 // Measures by page:
 //   Overview cards:      Sales Amount, Sales YoY %, Margin %, Orders, Avg Order Value, Customers
@@ -12,17 +13,17 @@
 // ===== Display folder: Sales =====
 
 // Sales Amount: revenue in US dollars, quantity times net price, from the fact columns (no calculated column).
-// Format: \$#,0
+// Format: client.currency + #,0
 Sales Amount =
 SUMX ( Sales, Sales[Quantity] * Sales[Net Price] )
 
 // Total Cost: cost in US dollars, quantity times unit cost.
-// Format: \$#,0
+// Format: client.currency + #,0
 Total Cost =
 SUMX ( Sales, Sales[Quantity] * Sales[Unit Cost] )
 
 // Margin: Sales Amount minus Total Cost.
-// Format: \$#,0
+// Format: client.currency + #,0
 Margin =
 [Sales Amount] - [Total Cost]
 
@@ -45,7 +46,7 @@ Customers =
 DISTINCTCOUNT ( Sales[Customer Key] )
 
 // Avg Order Value: Sales Amount per order. One division, no iteration over orders.
-// Format: \$#,0.00
+// Format: client.currency + #,0.00
 Avg Order Value =
 DIVIDE ( [Sales Amount], [Orders] )
 
@@ -53,7 +54,7 @@ DIVIDE ( [Sales Amount], [Orders] )
 // ===== Display folder: Time =====
 
 // Sales PY: Sales Amount for the same dates one year earlier, through the marked Date table.
-// Format: \$#,0
+// Format: client.currency + #,0
 Sales PY =
 CALCULATE ( [Sales Amount], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
 

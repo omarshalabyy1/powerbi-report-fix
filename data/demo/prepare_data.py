@@ -1,6 +1,7 @@
-"""Download the Contoso sales data and write data/sales_flat.csv, the one flat export both reports read.
+"""Demo only: download the Contoso sales data and write data/input/sales_flat.csv, the flat export the demo's
+slow report reads and the notebook checks. A client hands over their own export instead (data/input/README.md).
 
-Run: python prepare_data.py   (about a minute; skips the download if the archive is already there)
+Run: python data/demo/prepare_data.py   (about a minute; skips the download if the archive is already there)
 """
 from pathlib import Path
 import urllib.request
@@ -9,10 +10,10 @@ import duckdb
 import py7zr
 
 URL = "https://github.com/sql-bi/Contoso-Data-Generator-V2-Data/releases/download/ready-to-use-data-2024/csv-1m.7z"
-DATA = Path(__file__).parent / "data"
-ARCHIVE = DATA / "csv-1m.7z"
-RAW = DATA / "raw"
-FLAT = DATA / "sales_flat.csv"
+DEMO = Path(__file__).parent
+ARCHIVE = DEMO / "csv-1m.7z"
+RAW = DEMO / "raw"
+FLAT = DEMO.parent / "input" / "sales_flat.csv"
 
 # One row per order line with every customer, store and product column joined on:
 # the wide export slow reports are usually built on.
@@ -62,7 +63,6 @@ ORDER BY s.OrderKey, s.LineNumber
 
 if not ARCHIVE.exists():
     print("Downloading", URL)
-    DATA.mkdir(exist_ok=True)
     urllib.request.urlretrieve(URL, ARCHIVE)
 
 if not (RAW / "sales.csv").exists():
@@ -76,4 +76,4 @@ flat_rows = duckdb.sql(f"SELECT count(*) FROM '{FLAT}'").fetchone()[0]
 
 # Every sales row must survive the joins, or the reports would not match the source.
 assert flat_rows == sales_rows, f"flat file has {flat_rows:,} rows, sales has {sales_rows:,}"
-print(f"Wrote data/{FLAT.name} ({flat_rows:,} rows, {FLAT.stat().st_size / 1e6:,.0f} MB)")
+print(f"Wrote data/input/{FLAT.name} ({flat_rows:,} rows, {FLAT.stat().st_size / 1e6:,.0f} MB)")
