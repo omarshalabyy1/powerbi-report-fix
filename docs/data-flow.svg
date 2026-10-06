@@ -31,8 +31,8 @@
   <text x="267.0" y="138" class="where" text-anchor="middle">prepare_data.py, DuckDB</text>
   <rect x="364" y="96" width="140" height="26" rx="13" fill="#0EA5E9"/><text x="434.0" y="114" class="layer" text-anchor="middle">2  Compute</text>
   <text x="434.0" y="138" class="where" text-anchor="middle">analysis.ipynb, DuckDB</text>
-  <rect x="526" y="96" width="170" height="26" rx="13" fill="#14B8A6"/><text x="611.0" y="114" class="layer" text-anchor="middle">3  Write</text>
-  <text x="611.0" y="138" class="where" text-anchor="middle">output/ and powerbi/</text>
+  <rect x="534" y="96" width="170" height="26" rx="13" fill="#14B8A6"/><text x="619.0" y="114" class="layer" text-anchor="middle">3  Write</text>
+  <text x="619.0" y="138" class="where" text-anchor="middle">output/ and powerbi/</text>
   <rect x="718" y="96" width="252" height="26" rx="13" fill="#22C55E"/><text x="844.0" y="114" class="layer" text-anchor="middle">4  Power BI</text>
   <text x="844.0" y="138" class="where" text-anchor="middle">the same two pages, twice</text>
   <rect x="30" y="150" width="140" height="144" rx="10" fill="#13233D" stroke="#94A3B8" stroke-opacity="0.7"/>
@@ -50,17 +50,17 @@
   <text x="204" y="267" class="note">every column joined on</text>
   <text x="267" y="318" class="where" text-anchor="middle">a client's own export</text>
   <text x="267" y="334" class="where" text-anchor="middle">starts here, in data/input/</text>
-  <path d="M170 222.0 C181.0 222.0 181.0 222.0 190 222.0" class="edge" marker-end="url(#arrow)"/>
+  <path d="M170 222.0 H191" class="edge" marker-end="url(#arrow)"/>
   <rect x="364" y="254" width="140" height="40" rx="7" fill="#13233D" stroke="#0EA5E9" stroke-opacity="0.7"/><text x="374" y="271" class="name">sales</text><text x="374" y="287" class="count">11 mapped columns</text>
   <rect x="364" y="321.6" width="140" height="40" rx="7" fill="#13233D" stroke="#0EA5E9" stroke-opacity="0.7"/><text x="374" y="338.6" class="name">check numbers</text><text x="374" y="354.6" class="count">SQL, page by page</text>
-  <path d="M342 274.0 C353.0 274.0 353.0 274.0 362 274.0" class="edge" marker-end="url(#arrow)"/>
+  <path d="M342 274.0 H363" class="edge" marker-end="url(#arrow)"/>
   <line x1="434" y1="294" x2="434" y2="319.6" class="edge" marker-end="url(#arrow)"/>
-  <rect x="526" y="254" width="170" height="40" rx="7" fill="#13233D" stroke="#14B8A6" stroke-opacity="0.7"/><text x="536" y="271" class="name">output/sales.csv</text><text x="536" y="287" class="count">2,098,633 rows, 11 columns</text>
-  <rect x="526" y="321.6" width="170" height="40" rx="7" fill="#13233D" stroke="#14B8A6" stroke-opacity="0.7"/><text x="536" y="338.6" class="name">powerbi/06-checks.md</text><text x="536" y="354.6" class="count">what each page must show</text>
-  <rect x="526" y="389.2" width="170" height="40" rx="7" fill="#13233D" stroke="#14B8A6" stroke-opacity="0.7"/><text x="536" y="406.2" class="name">output/numbers.json</text><text x="536" y="422.2" class="count">every number, for the README</text>
-  <path d="M504 274.0 C515.0 274.0 515.0 274.0 524 274.0" class="edge" marker-end="url(#arrow)"/>
-  <path d="M504 341.6 C515.0 341.6 515.0 341.6 524 341.6" class="edge" marker-end="url(#arrow)"/>
-  <path d="M504 341.6 C515.0 341.6 515.0 409.2 524 409.2" class="edge" marker-end="url(#arrow)"/>
+  <rect x="534" y="254" width="170" height="40" rx="7" fill="#13233D" stroke="#14B8A6" stroke-opacity="0.7"/><text x="544" y="271" class="name">output/sales.csv</text><text x="544" y="287" class="count">2,098,633 rows, 11 columns</text>
+  <rect x="534" y="321.6" width="170" height="40" rx="7" fill="#13233D" stroke="#14B8A6" stroke-opacity="0.7"/><text x="544" y="338.6" class="name">powerbi/06-checks.md</text><text x="544" y="354.6" class="count">what each page must show</text>
+  <rect x="534" y="389.2" width="170" height="40" rx="7" fill="#13233D" stroke="#14B8A6" stroke-opacity="0.7"/><text x="544" y="406.2" class="name">output/numbers.json</text><text x="544" y="422.2" class="count">every number, for the README</text>
+  <path d="M504 274.0 H533" class="edge" marker-end="url(#arrow)"/>
+  <path d="M504 341.6 H533" class="edge" marker-end="url(#arrow)"/>
+  <path d="M504 349.6 H512 V401.2 H533" class="edge" marker-end="url(#arrow)"/>
   <rect x="718" y="150" width="252" height="96" rx="10" fill="#13233D" stroke="#22C55E" stroke-opacity="0.7"/>
   <text x="730" y="172" class="name" font-weight="700">Before: the slow report</text>
   <text x="730" y="191" class="note">Sales, one flat table</text><text x="958" y="191" class="count" text-anchor="end">35 columns</text>
@@ -75,13 +75,13 @@
 
   <text x="730" y="390" class="count">via staging query Sales Flat</text>
   <line x1="342" y1="170.0" x2="716" y2="170.0" class="edge" marker-end="url(#arrow)"/>
-  <path d="M696 274.0 C707.0 274.0 707.0 274.0 716 274.0" class="edge" marker-end="url(#arrow)"/>
-  <path d="M696 341.6 H716" class="edge" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+  <path d="M704 274.0 H717" class="edge" marker-end="url(#arrow)"/>
+  <path d="M704 341.6 H716" class="edge" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
   <rect x="718.0" y="430.8" width="122.0" height="28" rx="14" fill="#166534"/><text x="779.0" y="449.8" class="name" text-anchor="middle">Overview</text>
   <rect x="848.0" y="430.8" width="122.0" height="28" rx="14" fill="#166534"/><text x="909.0" y="449.8" class="name" text-anchor="middle">Products</text>
   <rect x="364" y="430.8" width="140" height="40" rx="7" fill="#13233D" stroke="#0EA5E9" stroke-opacity="0.7" stroke-dasharray="4 4"/><text x="374" y="447.8" class="name">measure.py</text><text x="374" y="463.8" class="count">page times, model size</text>
   <path d="M844.0 458.8 V508.0 H434 V472.8" class="edge" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
   <text x="836.0" y="526.0" class="where" text-anchor="end">Performance Analyzer and VertiPaq Analyzer exports, both reports: not taken yet</text>
-  <path d="M504 450.8 C515.0 450.8 515.0 409.2 524 409.2" class="edge" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+  <path d="M504 450.8 H518 V417.2 H533" class="edge" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
   <text x="40" y="554.0" class="where">dashed: checking and measuring. Both reports are compared with 06-checks.md; measure.py adds the timings to numbers.json once the exports are in.</text>
 </svg>

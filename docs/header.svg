@@ -34,7 +34,7 @@
 
   <!-- the star -->
   <g stroke="#3B82F6" stroke-width="2" fill="none" stroke-opacity="0.8">
-    <path d="M840 100V58M840 100H770M840 100H910"/>
+    <path d="M840 100V62M840 100H794M840 100H886"/>
   </g>
   <rect x="812" y="84" width="56" height="32" rx="7" fill="#3B82F6" fill-opacity="0.45" stroke="#3B82F6"/>
   <rect x="816" y="40" width="48" height="22" rx="6" fill="#3B82F6" fill-opacity="0.15" stroke="#3B82F6" stroke-opacity="0.8"/>
