@@ -1,4 +1,4 @@
-# 6. Checks: the numbers each page must show (Contoso sales)
+# 6. Checks: the numbers each page must show (Sample store sales)
 
 Written by [analysis/analysis.ipynb](../analysis/analysis.ipynb) from SQL on `data/input/sales_flat.csv`; do not edit by hand. **Both reports, the slow one and the fixed one, must show exactly these numbers.** If one differs, the build has a mistake; fix it before taking any timing.
 

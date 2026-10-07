@@ -2,7 +2,7 @@
 # A key exists here only if something reads it. There are no secrets, so there is no .env.
 
 client:
-  name: Contoso sales                # the heading of powerbi/06-checks.md
+  name: Sample store sales           # the heading of powerbi/06-checks.md
   currency: "$"                      # printed before every amount (notebook, powerbi/06-checks.md)
 
 inputs:                              # the files in data/input/ (columns and examples: data/input/README.md)

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580.0" width="1000" height="580.0" role="img" aria-label="Data flow, step by step: prepare_data.py (demo only) joins four Contoso CSV files (sales, customer, store, product) into data/input/sales_flat.csv, 2,098,633 order lines and 35 columns. The slow report reads it as is: one flat Sales table, 6 calculated columns and 3 hidden date tables. The notebook loads the 11 mapped columns into DuckDB, computes every check number in SQL and writes output/sales.csv (2,098,633 rows, 11 columns), powerbi/06-checks.md and output/numbers.json. The fixed report reads output/sales.csv through the staging query Sales Flat into a star: Sales (2,098,633 rows), Customer (88,063), Product (2,517) and Date (3,653 days, in DAX). Both reports have the Overview and Products pages. measure.py will read the Performance Analyzer and VertiPaq Analyzer exports of both reports; they are not taken yet.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580.0" width="1000" height="580.0" role="img" aria-label="Data flow, step by step: prepare_data.py (demo only) joins four source CSV files (sales, customer, store, product) into data/input/sales_flat.csv, 2,098,633 order lines and 35 columns. The slow report reads it as is: one flat Sales table, 6 calculated columns and 3 hidden date tables. The notebook loads the 11 mapped columns into DuckDB, computes every check number in SQL and writes output/sales.csv (2,098,633 rows, 11 columns), powerbi/06-checks.md and output/numbers.json. The fixed report reads output/sales.csv through the staging query Sales Flat into a star: Sales (2,098,633 rows), Customer (88,063), Product (2,517) and Date (3,653 days, in DAX). Both reports have the Overview and Products pages. measure.py will read the Performance Analyzer and VertiPaq Analyzer exports of both reports; they are not taken yet.">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0B1220"/>
@@ -36,7 +36,7 @@
   <rect x="718" y="96" width="252" height="26" rx="13" fill="#22C55E"/><text x="844.0" y="114" class="layer" text-anchor="middle">4  Power BI</text>
   <text x="844.0" y="138" class="where" text-anchor="middle">the same two pages, twice</text>
   <rect x="30" y="150" width="140" height="144" rx="10" fill="#13233D" stroke="#94A3B8" stroke-opacity="0.7"/>
-  <text x="42" y="172" class="name" font-weight="700">4 Contoso</text>
+  <text x="42" y="172" class="name" font-weight="700">4 source</text>
   <text x="42" y="191" class="name">CSV files</text>
 
   <text x="42" y="229" class="note">sales, customer,</text>
