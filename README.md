@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1200&color=2DD4BF&center=true&vCenter=true&width=760&lines=Slow+report+in.+Star+schema+out.;Measure.+Model.+DAX.+Check.+Hand+over.;Every+number+unchanged" alt="Slow report in. Star schema out.">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1200&color=2DD4BF&center=true&vCenter=true&width=760&lines=Slow+report+in.+Star+schema+out.;Measure.+Model.+DAX.+Check.+Hand+over.;One+set+of+check+numbers" alt="Slow report in. Star schema out.">
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 > 📖 **New to data?** [The project explained, from zero](docs/explained.md): every word, every number and the interview questions, in plain words.
 
-<h3 align="center"><!--n:headline-->2,098,633 sales rows: a 35-column flat table rebuilt as a star schema, every number unchanged.<!--/n--></h3>
+<h3 align="center"><!--n:headline-->2,098,633 sales rows: a 35-column flat table rebuilt as a star schema, with the check numbers both reports must match.<!--/n--></h3>
 
 ## The problem
 
@@ -48,7 +48,7 @@ Slow reports usually get that way for the same reasons: one wide table pulled st
 | Columns in the model | 41 (35 + 6 calculated) | 17 (Sales 7, Date 4, Product 4, Customer 2) |
 | Calculated columns | 6 | 0 |
 | Hidden date tables | 3 (auto date/time) | 0 |
-| Numbers on the pages | as in [`06-checks.md`](powerbi/06-checks.md) | identical |
+| Numbers on the pages | as in [`06-checks.md`](powerbi/06-checks.md) | must match; checked once the reports are built |
 
 <!--n:timings-->
 

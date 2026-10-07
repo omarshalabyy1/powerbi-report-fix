@@ -27,11 +27,12 @@ if "slowest_before" in numbers:  # the Power BI measurements are in
                           "from a cold cache, model size from DAX Studio's VertiPaq Analyzer "
                           "([method](docs/measuring.md)).\n\n")
 else:
-    numbers["headline"] = f"{rows} sales rows: a {numbers['flat_columns']}-column flat table rebuilt as a star schema, every number unchanged."
-    numbers["headline_short"] = f"{rows} sales rows, the same numbers before and after."
-    numbers["card_title"] = "Rebuilding a slow sales report without changing a single number"
+    numbers["headline"] = (f"{rows} sales rows: a {numbers['flat_columns']}-column flat table rebuilt as a star schema, "
+                           "with the check numbers both reports must match.")
+    numbers["headline_short"] = f"{rows} sales rows, one set of check numbers for both reports."
+    numbers["card_title"] = "Rebuilding a slow sales report, checked number by number"
     numbers["card_result"] = (f"{rows} sales rows: one {numbers['flat_columns']}-column table rebuilt as a star schema "
-                              "of 4 tables, every number matched against SQL before and after.")
+                              "of 4 tables, with every check number worked out in SQL for both reports to match.")
 
 
 def fill(path):

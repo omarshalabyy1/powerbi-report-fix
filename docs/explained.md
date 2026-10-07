@@ -148,7 +148,7 @@ These shape numbers are counted from the build files of each report. Once the `.
 | **17 columns** | After: Sales 7, Date 4 (Date, Year, Month Number, Month), Product 4 (key, name, category, subcategory), Customer 2 (key, country). | 7 + 4 + 4 + 2 = 17. | `powerbi/01-power-query.md`, `powerbi/02-model.md` |
 | **6 → 0 calculated columns** | Line Amount, Line Cost, Line Margin, Year, Month, Month Number. The fixed report computes amounts inside the measures and takes Year and Month from the Date table. | Counted in the files. | `powerbi/before/03-measures.dax` |
 | **3 → 0 hidden date tables** | Auto date/time builds one for each date column in the slow table: Order Date, Delivery Date and Birthday. The fixed report turns it off. | 3 date-typed columns in the slow query. | `powerbi/before/01-power-query.md` |
-| **Numbers on the pages: identical** | Both reports must show the numbers in `06-checks.md`. | Written by the notebook from SQL. Each build step in `08-build-checklist.md` checks them. | `powerbi/06-checks.md` |
+| **Numbers on the pages: must match** | Both reports must show the numbers in `06-checks.md`. | Written by the notebook from SQL. Each build step in `08-build-checklist.md` checks them. | `powerbi/06-checks.md` |
 
 ### The timings
 
@@ -293,7 +293,7 @@ Measure their report first, as it is, with the same method. Put their export in 
 ## 7. Limits, in plain words
 
 - No timings yet. The reports still have to be built and timed in Power BI Desktop, so the speed-up and the model size are not known. The README will show them only once they are measured.
-- Until both reports are built, "every number unchanged" is what the numbers must match, proven in SQL. The match inside Power BI is checked during the build.
+- Until both reports are built, the check numbers are worked out in SQL only. The match inside Power BI is checked during the build.
 - Each page is timed once, on one laptop. Small differences are noise.
 - The data is generated (see Data in the README), so the sales trends do not describe a real company.
 - The slow report's previous-year measure only matches where every checked cell has sales in the selected year. That count is 0 here; a client's data must be checked again.

@@ -30,7 +30,7 @@
 
   <text x="40" y="78" class="name">Power BI report fix</text>
   <text x="40" y="112" class="line">A slow sales report rebuilt as a star schema with clean DAX.</text>
-  <text x="40" y="142" class="result"><!--n:headline_short-->2,098,633 sales rows, the same numbers before and after.<!--/n--></text>
+  <text x="40" y="142" class="result"><!--n:headline_short-->2,098,633 sales rows, one set of check numbers for both reports.<!--/n--></text>
 
   <!-- the star -->
   <g stroke="#3B82F6" stroke-width="2" fill="none" stroke-opacity="0.8">
