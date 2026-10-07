@@ -12,6 +12,8 @@
   <img src="https://img.shields.io/badge/DuckDB-Checks-FFF000?style=for-the-badge&logo=duckdb&logoColor=black" alt="DuckDB">
 </p>
 
+> 📖 **New to data?** [The project explained, from zero](docs/explained.md): every word, every number and the interview questions, in plain words.
+
 <h3 align="center"><!--n:headline-->2,098,633 sales rows: a 35-column flat table rebuilt as a star schema, every number unchanged.<!--/n--></h3>
 
 ## The problem
@@ -32,7 +34,7 @@ Slow reports usually get that way for the same reasons: one wide table pulled st
 
 - **Model.** The <!--n:flat_columns-->35<!--/n-->-column flat table becomes a star: a Sales fact that keeps only keys and numbers (7 columns), and Customer, Product and Date dimensions around it. Each product name is now stored once, not on every order line. Auto date/time is off, and one marked Date table drives all time logic.
 - **DAX.** No calculated columns: amounts are computed inside the measures. `Avg Order Value` is one division instead of a loop over <!--n:orders_check-->159,695<!--/n--> orders in 2023; counts use `DISTINCTCOUNT` instead of building a table to count it; `Sales PY` uses `SAMEPERIODLASTYEAR` on the date table; results that are used twice are kept in variables. All ten measures are in [`powerbi/03-measures.dax`](powerbi/03-measures.dax), next to the slow versions in [`powerbi/before/03-measures.dax`](powerbi/before/03-measures.dax).
-- **Check.** Every card, chart and table is compared with numbers computed in SQL straight from the source ([`powerbi/06-checks.md`](powerbi/06-checks.md)). Both reports show the same numbers, for example <!--n:sales_check-->$318,425,878<!--/n--> of sales in 2023, down <!--n:yoy_check_abs-->28.4%<!--/n--> on 2022, at a <!--n:margin_check-->56.0%<!--/n--> margin.
+- **Check.** Every card, chart and table is compared with numbers computed in SQL straight from the source ([`powerbi/06-checks.md`](powerbi/06-checks.md)). Both reports must show the same numbers, for example <!--n:sales_check-->$318,425,878<!--/n--> of sales in 2023, down <!--n:yoy_check_abs-->28.4%<!--/n--> on 2022, at a <!--n:margin_check-->56.0%<!--/n--> margin.
 
 ## 📈 The result
 
