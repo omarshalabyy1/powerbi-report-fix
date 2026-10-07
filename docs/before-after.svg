@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="1000" height="500" role="img" aria-label="Before and after. Before: one flat Sales table plus calculated columns, hidden auto date tables, and Avg Order Value computed by iterating every order. After: a star schema, a small Sales fact with Date, Customer and Product dimensions, and Avg Order Value as one division. Both show the same numbers. Before: 41 columns in the model and 3 hidden date tables. After: 17 columns and none.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="1000" height="500" role="img" aria-label="Before and after. Before: one flat Sales table plus calculated columns, hidden auto date tables, and Avg Order Value computed by iterating every order. After: a star schema, a small Sales fact with Date, Customer and Product dimensions, and Avg Order Value as one division. Both must show the same check numbers. Before: 41 columns in the model and 3 hidden date tables. After: 17 columns and none.">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0B1220"/>
@@ -24,7 +24,7 @@
 
   <rect width="1000" height="500" rx="22" fill="url(#bg)"/>
   <text x="30" y="48" class="title">Before and after</text>
-  <text x="30" y="72" class="sub">The same two pages and the same numbers. Only the model and the DAX changed.</text>
+  <text x="30" y="72" class="sub">The same two pages, held to the same check numbers. Only the model and the DAX change.</text>
 
   <!-- BEFORE -->
   <rect x="30" y="95" width="440" height="380" rx="16" fill="#94A3B8" fill-opacity="0.05" stroke="#94A3B8" stroke-opacity="0.5"/>
@@ -56,7 +56,7 @@
   <!-- same numbers -->
   <path d="M474 285h52" stroke="#3B82F6" stroke-width="2.5" fill="none"/>
   <path d="M518 278l9 7-9 7" stroke="#3B82F6" stroke-width="2.5" fill="none"/>
-  <text x="500" y="312" class="small" text-anchor="middle">same</text>
+  <text x="500" y="312" class="small" text-anchor="middle">same check</text>
   <text x="500" y="327" class="small" text-anchor="middle">numbers</text>
 
   <!-- AFTER -->
