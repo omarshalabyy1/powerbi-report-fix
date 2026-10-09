@@ -2,6 +2,8 @@
 
 Two reports with the same two pages and the same numbers. The **slow report** (`before/`) is one flat table with the habits that make reports slow. The **fixed report** (this folder) is the same report rebuilt as a star schema with a date table and clean DAX.
 
+In the six layers, the fixed report's `Sales Flat` query is the Silver layer, the star schema (`01-power-query.md`, `02-model.md`) is the Semantic layer, the measures (`03-measures.dax`) are the Analytical layer and the pages (`04-pages.md`) are the Reporting layer. The slow report reads the Bronze layer file as is.
+
 ## What the report answers
 
 - How much did we sell this year, at what margin, and how does it compare with last year?

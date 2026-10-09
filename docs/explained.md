@@ -34,7 +34,8 @@ Think of a phone book. The slow report writes the customer's full address next t
 | **Order line** | One product on one order. An order for a pen and a computer has 2 order lines. "Sales rows" in the README means order lines. |
 | **CSV** | Comma-separated values: a plain text file of a table, one row per line. |
 | **Power Query** | The part of Power BI that loads and shapes data before the report uses it. Its code language is called **M**; the code blocks in `powerbi/01-power-query.md` are M. |
-| **Staging query** | A query that loads and types the file once but is not loaded into the report itself. Here `Sales Flat`; the Sales, Customer and Product tables are built from it. |
+| **Staging query** | A query that loads and types the file once but is not loaded into the report itself. Here `Sales Flat`; the Sales, Customer and Product tables are built from it. It belongs to the Silver layer. |
+| **Layers** | The six stages the data passes through, in order. **Bronze layer**: the export as received, `sales_flat.csv`. **Silver layer**: the 11 mapped columns under standard names (`output/sales.csv`), typed by `Sales Flat`. **Gold layer**: business rules; this project has none. **Semantic layer**: the star schema, Sales with Customer, Product and Date. **Analytical layer**: the ten DAX measures. **Reporting layer**: the Overview and Products pages. The slow report skips them all and reads the Bronze layer file as is. |
 | **DAX** | Data Analysis Expressions, the formula language of Power BI. It is used for **measures** and **calculated columns**. |
 | **Measure** | A formula worked out when a visual asks for it, for the current filters. "Sales Amount" for 2023 and for Germany are the same measure with different filters. The report has ten. |
 | **Calculated column** | A DAX formula that adds a column to a table and stores a value on every row. The slow report has six. The fixed report has none. |
@@ -78,9 +79,9 @@ Run in this order (the commands are in the README's "Run it" section):
 | Step | File | What it does |
 |---|---|---|
 | 0 | `config/client.yaml`, `config.py` | Hold every setting. `config.py` reads them so no file hard-codes a value. |
-| 1 | `data/demo/prepare_data.py` | Demo only. Downloads the data archive, unpacks it, and joins 4 of its tables (sales, customer, store, product) into one flat file, `data/input/sales_flat.csv`. It stops if the joined file has a different row count from the sales table, so no order line is lost. A client hands over their own export instead. |
+| 1 | `data/demo/prepare_data.py` | Demo only, before the Bronze layer. Downloads the data archive, unpacks it, and joins 4 of its tables (sales, customer, store, product) into one flat file, `data/input/sales_flat.csv`. It stops if the joined file has a different row count from the sales table, so no order line is lost. A client hands over their own export instead. The flat file is the Bronze layer: kept as received. |
 | 2 | `python config.py` | Checks the settings and that the flat file exists and has the 11 columns mapped under `columns`. Prints `config and input file OK`. |
-| 3 | `analysis/analysis.ipynb` | Reads the 11 mapped columns into DuckDB. Works out, in SQL, every number each page must show. Writes `output/sales.csv` (the 11 columns the fixed report reads), `powerbi/06-checks.md` (the numbers to check) and `output/numbers.json` (every number, for the README). |
+| 3 | `analysis/analysis.ipynb` | Silver layer. Reads the 11 mapped columns into DuckDB. Works out, in SQL, every number each page must show. Writes `output/sales.csv` (the 11 columns the fixed report reads), `powerbi/06-checks.md` (the numbers to check) and `output/numbers.json` (every number, for the README). |
 | 4 | `theme.py` | Writes the Power BI theme from the colours in `client.yaml`. |
 | 5 | `data/demo/publish.py` | Demo only. Copies the numbers from `output/numbers.json` into the README, the diagrams and the portfolio card. |
 | 6 | `powerbi/08-build-checklist.md` | Click-by-click build of both reports: first the slow one (`powerbi/before/`), then the fixed one (`powerbi/`), checking the numbers from `06-checks.md` at each step. |
@@ -217,13 +218,13 @@ The full list is in [06-checks.md](../powerbi/06-checks.md). The ones you meet i
 | Number | Where you see it | What it means |
 |---|---|---|
 | **01 to 05** | how-it-works.svg | The five steps: measure, model, DAX, check, hand over. |
-| **1 to 4** | data-flow.svg | The four stages: flatten, compute, write, Power BI. |
+| **Six layers** | data-flow.svg | Bronze, Silver, Gold, Semantic, Analytical and Reporting layer, left to right. The Gold layer has no step here. The dashed line is the slow report, which reads the Bronze layer file as is. The grey strip is the check numbers: a check, not a layer. |
 | **4 CSV files** | data-flow.svg | The 4 source tables `prepare_data.py` joins: sales, customer, store, product. |
 | **2,098,633 rows, 35 columns, 801 MB** | data-flow.svg, data-model.svg, header.svg | The flat file, as above. |
 | **11 mapped columns** | data-flow.svg | The columns listed under `columns` in `config/client.yaml`. The notebook reads only these. |
 | **2,098,633 rows, 11 columns** | data-flow.svg | `output/sales.csv`: the same lines, the 11 columns only. |
 | **6, 3** | data-flow.svg, before-after.svg | Calculated columns and hidden date tables in the slow report. |
-| **88,063 rows** | data-flow.svg, data-model.svg | Customer: one row per customer who bought. |
+| **88,063 rows** | data-flow.svg, data-model.svg | Customer: one row per customer who bought. Built from the `Sales Flat` query (Silver layer), not from the fact. |
 | **2,517 rows** | data-flow.svg, data-model.svg | Product: one row per product. |
 | **3,653 days** | data-flow.svg, data-model.svg | Date: every day from 1 Jan 2015 to 31 Dec 2024 (10 years, 3 of them leap years: 3,650 + 3). |
 | **41 → 17 columns** | data-model.svg, before-after.svg | As in the results table. |

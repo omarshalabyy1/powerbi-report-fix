@@ -81,13 +81,13 @@ python data/demo/publish.py
 
 ## 🏗️ For engineers
 
-Every file the scripts and the notebook read and write, and where each report gets its data:
+Every file the scripts and the notebook read and write, in the six layers: Bronze layer (`data/input/sales_flat.csv`, the export as received), Silver layer (the notebook's 11 mapped columns in `output/sales.csv`, typed by the `Sales Flat` query), Gold layer (no step: the fix adds no business rules), Semantic layer (the star schema), Analytical layer (the ten DAX measures) and Reporting layer (the Overview and Products pages). The slow report reads the Bronze layer file straight into its pages, which is what makes it slow:
 
-![Data flow, step by step](docs/data-flow.svg)
+![Data flow through the six layers: Bronze, Silver, Gold, Semantic, Analytical, Reporting](docs/data-flow.svg)
 
-The model before and after the fix, with every column:
+The model before and after the fix, with every column. The star schema is the Semantic layer:
 
-![The Power BI model, before and after](docs/data-model.svg)
+![The Power BI model before and after: the Bronze layer file loaded as is, then the Semantic layer star schema](docs/data-model.svg)
 
 ## 🗂️ Data
 

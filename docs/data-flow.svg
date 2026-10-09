@@ -1,87 +1,78 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580.0" width="1000" height="580.0" role="img" aria-label="Data flow, step by step: prepare_data.py (demo only) joins four source CSV files (sales, customer, store, product) into data/input/sales_flat.csv, 2,098,633 order lines and 35 columns. The slow report reads it as is: one flat Sales table, 6 calculated columns and 3 hidden date tables. The notebook loads the 11 mapped columns into DuckDB, computes every check number in SQL and writes output/sales.csv (2,098,633 rows, 11 columns), powerbi/06-checks.md and output/numbers.json. The fixed report reads output/sales.csv through the staging query Sales Flat into a star: Sales (2,098,633 rows), Customer (88,063), Product (2,517) and Date (3,653 days, in DAX). Both reports have the Overview and Products pages. measure.py will read the Performance Analyzer and VertiPaq Analyzer exports of both reports; they are not taken yet.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 550" width="1000" height="550" role="img" aria-label="Data flow through the six layers, left to right. Input files, demo only: prepare_data.py joins 4 source CSV files (sales, customer, store, product) into the flat export. Bronze layer: data/input/sales_flat.csv as received, 2,098,633 order lines, 35 columns, 801 MB; a client's own export starts here. Silver layer: the notebook loads the 11 mapped columns under standard names into DuckDB and writes output/sales.csv (2,098,633 rows, 11 columns); the Power Query query Sales Flat types it and is not loaded. Gold layer: no step in this repo. Semantic layer, the star schema built in Power Query: Sales fact (2,098,633 rows), Customer (88,063), Product (2,517) and Date (3,653 days, in DAX). Analytical layer: ten DAX measures. Reporting layer: the fixed report's Overview and Products pages. The slow report skips every layer: it reads the Bronze layer file as is into one flat table with 6 calculated columns and 3 hidden date tables. The check numbers both reports must show are worked out in SQL on the Silver layer and written to powerbi/06-checks.md and output/numbers.json; they are a check, not a layer.">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0B1220"/>
-      <stop offset="0.55" stop-color="#10213A"/>
-      <stop offset="1" stop-color="#1E1B4B"/>
-    </linearGradient>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M0 0 L10 5 L0 10 Z" fill="#64748B"/>
     </marker>
   </defs>
   <style>
     text { font-family: "Segoe UI", -apple-system, Helvetica, Arial, sans-serif; }
-    .title { font-size: 21px; font-weight: 700; fill: #FFFFFF; }
-    .sub { font-size: 13.5px; fill: #CBD5E1; }
-    .layer { font-size: 14px; font-weight: 700; fill: #0B1220; }
-    .where { font-size: 12px; fill: #94A3B8; }
-    .name { font-size: 13px; fill: #F1F5F9; }
-    .count { font-size: 11.5px; fill: #94A3B8; }
-    .note { font-size: 12px; fill: #CBD5E1; }
-    .col { font-size: 12.5px; fill: #E2E8F0; }
+    .title { font-size: 21px; font-weight: 700; fill: #0E1630; }
+    .sub { font-size: 13.5px; fill: #475569; }
+    .layer { font-size: 12.5px; font-weight: 700; fill: #0B1220; }
+    .where { font-size: 11.5px; fill: #506078; }
+    .name { font-size: 12.5px; fill: #0F172A; }
+    .count { font-size: 11.5px; fill: #506078; }
+    .col { font-size: 12.5px; fill: #1E293B; }
     .key { font-size: 11px; font-weight: 700; }
     .edge { fill: none; stroke: #64748B; stroke-width: 1.4; }
   </style>
-  <rect width="1000" height="580.0" rx="22" fill="url(#bg)"/>
-  <text x="40" y="50" class="title">Data flow, step by step</text>
-  <text x="40" y="74" class="sub">One flat export feeds both reports: the slow one reads it as it is, the fixed one through the notebook.</text>
-  <rect x="30" y="96" width="140" height="26" rx="13" fill="#94A3B8"/><text x="100.0" y="114" class="layer" text-anchor="middle">Input files</text>
-  <text x="100.0" y="138" class="where" text-anchor="middle">data/demo/raw, demo only</text>
-  <rect x="192" y="96" width="150" height="26" rx="13" fill="#3B82F6"/><text x="267.0" y="114" class="layer" text-anchor="middle">1  Flatten</text>
-  <text x="267.0" y="138" class="where" text-anchor="middle">prepare_data.py, DuckDB</text>
-  <rect x="364" y="96" width="140" height="26" rx="13" fill="#0EA5E9"/><text x="434.0" y="114" class="layer" text-anchor="middle">2  Compute</text>
-  <text x="434.0" y="138" class="where" text-anchor="middle">analysis.ipynb, DuckDB</text>
-  <rect x="534" y="96" width="170" height="26" rx="13" fill="#14B8A6"/><text x="619.0" y="114" class="layer" text-anchor="middle">3  Write</text>
-  <text x="619.0" y="138" class="where" text-anchor="middle">output/ and powerbi/</text>
-  <rect x="718" y="96" width="252" height="26" rx="13" fill="#22C55E"/><text x="844.0" y="114" class="layer" text-anchor="middle">4  Power BI</text>
-  <text x="844.0" y="138" class="where" text-anchor="middle">the same two pages, twice</text>
-  <rect x="30" y="150" width="140" height="144" rx="10" fill="#13233D" stroke="#94A3B8" stroke-opacity="0.7"/>
-  <text x="42" y="172" class="name" font-weight="700">4 source</text>
-  <text x="42" y="191" class="name">CSV files</text>
-
-  <text x="42" y="229" class="note">sales, customer,</text>
-  <text x="42" y="248" class="note">store, product</text>
-  <rect x="192" y="150" width="150" height="144" rx="10" fill="#13233D" stroke="#3B82F6" stroke-opacity="0.7"/>
-  <text x="204" y="172" class="name" font-weight="700">sales_flat.csv</text>
-  <text x="204" y="191" class="count">2,098,633 rows</text>
-  <text x="204" y="210" class="count">35 columns, 801 MB</text>
-
-  <text x="204" y="248" class="note">one row per order line,</text>
-  <text x="204" y="267" class="note">every column joined on</text>
-  <text x="267" y="318" class="where" text-anchor="middle">a client's own export</text>
-  <text x="267" y="334" class="where" text-anchor="middle">starts here, in data/input/</text>
-  <path d="M170 222.0 H191" class="edge" marker-end="url(#arrow)"/>
-  <rect x="364" y="254" width="140" height="40" rx="7" fill="#13233D" stroke="#0EA5E9" stroke-opacity="0.7"/><text x="374" y="271" class="name">sales</text><text x="374" y="287" class="count">11 mapped columns</text>
-  <rect x="364" y="321.6" width="140" height="40" rx="7" fill="#13233D" stroke="#0EA5E9" stroke-opacity="0.7"/><text x="374" y="338.6" class="name">check numbers</text><text x="374" y="354.6" class="count">SQL, page by page</text>
-  <path d="M342 274.0 H363" class="edge" marker-end="url(#arrow)"/>
-  <line x1="434" y1="294" x2="434" y2="319.6" class="edge" marker-end="url(#arrow)"/>
-  <rect x="534" y="254" width="170" height="40" rx="7" fill="#13233D" stroke="#14B8A6" stroke-opacity="0.7"/><text x="544" y="271" class="name">output/sales.csv</text><text x="544" y="287" class="count">2,098,633 rows, 11 columns</text>
-  <rect x="534" y="321.6" width="170" height="40" rx="7" fill="#13233D" stroke="#14B8A6" stroke-opacity="0.7"/><text x="544" y="338.6" class="name">powerbi/06-checks.md</text><text x="544" y="354.6" class="count">what each page must show</text>
-  <rect x="534" y="389.2" width="170" height="40" rx="7" fill="#13233D" stroke="#14B8A6" stroke-opacity="0.7"/><text x="544" y="406.2" class="name">output/numbers.json</text><text x="544" y="422.2" class="count">every number, for the README</text>
-  <path d="M504 274.0 H533" class="edge" marker-end="url(#arrow)"/>
-  <path d="M504 341.6 H533" class="edge" marker-end="url(#arrow)"/>
-  <path d="M504 349.6 H512 V401.2 H533" class="edge" marker-end="url(#arrow)"/>
-  <rect x="718" y="150" width="252" height="96" rx="10" fill="#13233D" stroke="#22C55E" stroke-opacity="0.7"/>
-  <text x="730" y="172" class="name" font-weight="700">Before: the slow report</text>
-  <text x="730" y="191" class="note">Sales, one flat table</text><text x="958" y="191" class="count" text-anchor="end">35 columns</text>
-  <text x="730" y="210" class="note">calculated columns</text><text x="958" y="210" class="count" text-anchor="end">6</text>
-  <text x="730" y="229" class="note">hidden date tables</text><text x="958" y="229" class="count" text-anchor="end">3</text>
-  <rect x="718" y="254" width="252" height="175.2" rx="10" fill="#13233D" stroke="#22C55E" stroke-opacity="0.7"/>
-  <text x="730" y="276" class="name" font-weight="700">After: the star schema</text>
-  <text x="730" y="295" class="note">Sales, the fact</text><text x="958" y="295" class="count" text-anchor="end">2,098,633 rows</text>
-  <text x="730" y="314" class="note">Customer</text><text x="958" y="314" class="count" text-anchor="end">88,063 rows</text>
-  <text x="730" y="333" class="note">Product</text><text x="958" y="333" class="count" text-anchor="end">2,517 rows</text>
-  <text x="730" y="352" class="note">Date, in DAX</text><text x="958" y="352" class="count" text-anchor="end">3,653 days</text>
-
-  <text x="730" y="390" class="count">via staging query Sales Flat</text>
-  <line x1="342" y1="170.0" x2="716" y2="170.0" class="edge" marker-end="url(#arrow)"/>
-  <path d="M704 274.0 H717" class="edge" marker-end="url(#arrow)"/>
-  <path d="M704 341.6 H716" class="edge" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
-  <rect x="718.0" y="430.8" width="122.0" height="28" rx="14" fill="#166534"/><text x="779.0" y="449.8" class="name" text-anchor="middle">Overview</text>
-  <rect x="848.0" y="430.8" width="122.0" height="28" rx="14" fill="#166534"/><text x="909.0" y="449.8" class="name" text-anchor="middle">Products</text>
-  <rect x="364" y="430.8" width="140" height="40" rx="7" fill="#13233D" stroke="#0EA5E9" stroke-opacity="0.7" stroke-dasharray="4 4"/><text x="374" y="447.8" class="name">measure.py</text><text x="374" y="463.8" class="count">page times, model size</text>
-  <path d="M844.0 458.8 V508.0 H434 V472.8" class="edge" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
-  <text x="836.0" y="526.0" class="where" text-anchor="end">Performance Analyzer and VertiPaq Analyzer exports, both reports: not taken yet</text>
-  <path d="M504 450.8 H518 V417.2 H533" class="edge" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
-  <text x="40" y="554.0" class="where">dashed: checking and measuring. Both reports are compared with 06-checks.md; measure.py adds the timings to numbers.json once the exports are in.</text>
+  <rect x="1" y="1" width="998" height="548" rx="22" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+  <text x="40" y="50" class="title">Data flow, layer by layer</text>
+  <text x="40" y="74" class="sub">One flat export feeds both reports: the fixed one through the six layers, the slow one straight from the Bronze layer.</text>
+  <rect x="16" y="96" width="104" height="26" rx="13" fill="#94A3B8"/><text x="68.0" y="113.5" class="layer" text-anchor="middle">Input files</text>
+  <text x="68.0" y="138" class="where" text-anchor="middle">demo only</text>
+  <rect x="136" y="96" width="122" height="26" rx="13" fill="#3B82F6"/><text x="197.0" y="113.5" class="layer" text-anchor="middle">Bronze layer</text>
+  <text x="197.0" y="138" class="where" text-anchor="middle">data/input</text>
+  <rect x="274" y="96" width="134" height="26" rx="13" fill="#0EA5E9"/><text x="341.0" y="113.5" class="layer" text-anchor="middle">Silver layer</text>
+  <text x="341.0" y="138" class="where" text-anchor="middle">notebook, Power Query</text>
+  <rect x="424" y="96" width="104" height="26" rx="13" fill="#F59E0B"/><text x="476.0" y="113.5" class="layer" text-anchor="middle">Gold layer</text>
+  <text x="476.0" y="138" class="where" text-anchor="middle">none</text>
+  <rect x="544" y="96" width="128" height="26" rx="13" fill="#14B8A6"/><text x="608.0" y="113.5" class="layer" text-anchor="middle">Semantic layer</text>
+  <text x="608.0" y="138" class="where" text-anchor="middle">the star schema</text>
+  <rect x="688" y="96" width="122" height="26" rx="13" fill="#A855F7"/><text x="749.0" y="113.5" class="layer" text-anchor="middle">Analytical layer</text>
+  <text x="749.0" y="138" class="where" text-anchor="middle">DAX measures</text>
+  <rect x="826" y="96" width="158" height="26" rx="13" fill="#22C55E"/><text x="905.0" y="113.5" class="layer" text-anchor="middle">Reporting layer</text>
+  <text x="905.0" y="138" class="where" text-anchor="middle">Power BI pages</text>
+  <rect x="16" y="150" width="104" height="144" rx="7" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.4"/><text x="25" y="167" class="name">4 source</text><text x="25" y="183" class="count">CSV files</text>
+  <text x="25" y="204" class="count">sales, customer,</text>
+  <text x="25" y="220" class="count">store, product;</text>
+  <text x="25" y="236" class="count">prepare_data.py</text>
+  <text x="25" y="252" class="count">joins them</text>
+  <rect x="136" y="150" width="122" height="144" rx="7" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.4"/><text x="145" y="167" class="name">sales_flat.csv</text><text x="145" y="183" class="count">2,098,633 rows</text>
+  <text x="145" y="204" class="count">35 columns, 801 MB</text>
+  <text x="145" y="220" class="count">as received;</text>
+  <text x="145" y="236" class="count">a client's export</text>
+  <text x="145" y="252" class="count">starts here</text>
+  <path d="M120 170.0 H136" class="edge" marker-end="url(#arrow)"/>
+  <rect x="274" y="150" width="134" height="40" rx="7" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="1.4"/><text x="283" y="167" class="name">sales, in DuckDB</text><text x="283" y="183" class="count">11 mapped columns</text>
+  <rect x="274" y="202" width="134" height="40" rx="7" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="1.4"/><text x="283" y="219" class="name">output/sales.csv</text><text x="283" y="235" class="count">2,098,633 rows, 11 cols</text>
+  <rect x="274" y="254" width="134" height="40" rx="7" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="1.4"/><text x="283" y="271" class="name">Sales Flat query</text><text x="283" y="287" class="count">typed, not loaded</text>
+  <path d="M258 170.0 H274" class="edge" marker-end="url(#arrow)"/>
+  <path d="M341.0 190 V202" class="edge" marker-end="url(#arrow)"/>
+  <path d="M341.0 242 V254" class="edge" marker-end="url(#arrow)"/>
+  <rect x="424" y="150" width="104" height="40" rx="7" fill="none" stroke="#F59E0B" stroke-width="1.4" stroke-dasharray="4 4"/><text x="476.0" y="167" class="count" text-anchor="middle">no step</text><text x="476.0" y="182" class="count" text-anchor="middle">in this repo</text>
+  <rect x="544" y="202" width="128" height="40" rx="7" fill="#FFFFFF" stroke="#14B8A6" stroke-width="1.4"/><text x="553" y="219" class="name">Sales (fact)</text><text x="553" y="235" class="count">2,098,633 rows</text>
+  <rect x="544" y="254" width="128" height="40" rx="7" fill="#FFFFFF" stroke="#14B8A6" stroke-width="1.4"/><text x="553" y="271" class="name">Customer</text><text x="553" y="287" class="count">88,063 rows</text>
+  <rect x="544" y="306" width="128" height="40" rx="7" fill="#FFFFFF" stroke="#14B8A6" stroke-width="1.4"/><text x="553" y="323" class="name">Product</text><text x="553" y="339" class="count">2,517 rows</text>
+  <rect x="544" y="358" width="128" height="40" rx="7" fill="#FFFFFF" stroke="#14B8A6" stroke-width="1.4"/><text x="553" y="375" class="name">Date, in DAX</text><text x="553" y="391" class="count">3,653 days</text>
+  <path d="M408 265.0 C476.0 265.0 476.0 222.0 544 222.0" class="edge" marker-end="url(#arrow)"/>
+  <path d="M408 274.0 H544" class="edge" marker-end="url(#arrow)"/>
+  <path d="M408 283.0 C476.0 283.0 476.0 326.0 544 326.0" class="edge" marker-end="url(#arrow)"/>
+  <rect x="688" y="202" width="122" height="196" rx="7" fill="#FFFFFF" stroke="#A855F7" stroke-width="1.4"/><text x="697" y="219" class="name">10 DAX measures</text><text x="697" y="235" class="count">Sales Amount,</text>
+  <text x="697" y="251" class="count">Margin %, Orders,</text>
+  <text x="697" y="267" class="count">Avg Order Value,</text>
+  <text x="697" y="283" class="count">Sales PY, YoY %,</text>
+  <text x="697" y="299" class="count">Product Rank</text>
+  <path d="M673 202 H678 V398 H673" class="edge" stroke="#14B8A6"/>
+  <path d="M678 300.0 H688" class="edge" marker-end="url(#arrow)"/>
+  <rect x="826" y="202" width="158" height="196" rx="10" fill="#FFFFFF" stroke="#22C55E" stroke-width="1.4"/><text x="836" y="222" class="name" font-weight="700">After: the fixed report</text>
+  <rect x="838" y="270.0" width="134" height="26" rx="13" fill="#166534"/><text x="905.0" y="287.5" class="name" text-anchor="middle" style="fill:#FFFFFF">Overview</text>
+  <rect x="838" y="306.0" width="134" height="26" rx="13" fill="#166534"/><text x="905.0" y="323.5" class="name" text-anchor="middle" style="fill:#FFFFFF">Products</text>
+  <path d="M810 300.0 H826" class="edge" marker-end="url(#arrow)"/>
+  <path d="M197.0 294 V430.0 H826" class="edge" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+  <text x="278" y="423.0" class="count">reads the Bronze layer file as is: one flat table, 35 columns + 6 calculated, 3 hidden date tables</text>
+  <rect x="826" y="410" width="158" height="40" rx="7" fill="#FFFFFF" stroke="#22C55E" stroke-width="1.4" stroke-dasharray="4 4"/><text x="836" y="427" class="name" font-weight="700">Before: the slow report</text><text x="836" y="443" class="count">Overview, Products</text>
+  <rect x="16" y="462" width="794" height="30" rx="7" fill="#64748B"/><text x="28" y="482" class="name" style="fill:#FFFFFF">check numbers: SQL on the Silver layer, written to powerbi/06-checks.md and output/numbers.json (a check, not a layer)</text>
+  <text x="40" y="520" class="where">Both reports must show the numbers in 06-checks.md. measure.py adds page times and model size to numbers.json once the Power BI exports are in.</text>
+  <text x="40" y="537" class="where">Customer and Product are built from the Sales Flat query, not from the fact. The Date table takes its first and last year from Sales.</text>
 </svg>
