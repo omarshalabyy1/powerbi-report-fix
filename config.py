@@ -17,7 +17,7 @@ REPORT_COLUMNS = {
 REQUIRED = (
     ["client.name", "client.currency", "inputs.flat"]
     + [f"columns.{c}" for c in STANDARD]
-    + ["measurements.pages", "report.title", "report.check_year",
+    + ["measurements.pages", "report.title", "report.check_year", "report.date_start", "report.date_end",
        "report.second_check.year", "report.second_check.country", "report.second_check.category",
        "report.colours.data", "report.colours.text", "report.colours.muted",
        "report.colours.page", "report.colours.line", "report.colours.danger"]

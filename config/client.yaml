@@ -27,6 +27,8 @@ measurements:                        # Performance Analyzer exports in data/inpu
 report:
   title: Power BI report fix         # the Power BI theme name (python theme.py)
   check_year: 2023                   # the year every check uses, compared with the year before
+  date_start: 2015-01-01             # the Power BI Date table runs from this day (powerbi/02-model.md)
+  date_end: 2024-12-31               # to this day; the notebook stops if an order date falls outside
   second_check:                      # a filtered state that proves the numbers still match
     year: 2022
     country: Germany

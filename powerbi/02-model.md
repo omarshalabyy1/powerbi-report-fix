@@ -9,7 +9,7 @@ One fact table in the middle, three dimensions around it, every relationship one
 | Sales | Fact | order line | none kept (Order Key + Line Number in the source; nothing needs it) | <!--n:sales_rows-->2,098,633<!--/n--> |
 | Customer | Dimension | customer who bought | Customer Key | <!--n:customers_dim-->88,063<!--/n--> |
 | Product | Dimension | product | Product Key | <!--n:products_count-->2,517<!--/n--> |
-| Date | Dimension | calendar day, 1 Jan of the first sales year to 31 Dec of the last | Date | <!--n:date_rows-->3,653<!--/n--> |
+| Date | Dimension | calendar day, `report.date_start` to `report.date_end` in `config/client.yaml` | Date | <!--n:date_rows-->3,653<!--/n--> |
 
 | Choice | Why |
 |---|---|
@@ -24,18 +24,15 @@ Modeling > New table, paste:
 
 ```dax
 Date =
-VAR FirstYear = YEAR ( MIN ( Sales[Order Date] ) )
-VAR LastYear = YEAR ( MAX ( Sales[Order Date] ) )
-RETURN
-    ADDCOLUMNS (
-        CALENDAR ( DATE ( FirstYear, 1, 1 ), DATE ( LastYear, 12, 31 ) ),
-        "Year", YEAR ( [Date] ),
-        "Month Number", MONTH ( [Date] ),
-        "Month", FORMAT ( [Date], "mmm" )
-    )
+ADDCOLUMNS (
+    CALENDAR ( DATE ( 2015, 1, 1 ), DATE ( 2024, 12, 31 ) ),
+    "Year", YEAR ( [Date] ),
+    "Month Number", MONTH ( [Date] ),
+    "Month", FORMAT ( [Date], "mmm" )
+)
 ```
 
-Why: `SAMEPERIODLASTYEAR` needs every day of every year in one marked table; the years follow the data, so a refresh with new years extends it.
+Why: `SAMEPERIODLASTYEAR` needs every day of every year in one marked table. The two dates are `report.date_start` and `report.date_end` in `config/client.yaml`, typed here, never read from Sales, so the Date table is not built from the fact. When the data reaches a new year, widen both places; the notebook stops if an order date falls outside the range.
 
 Then:
 
