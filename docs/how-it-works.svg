@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 290" width="1000" height="290" role="img" aria-label="How it works: 01 Measure, time every page and visual with Performance Analyzer and DAX Studio; 02 Model, the flat table rebuilt as a star schema with a proper date table; 03 DAX, slow measures rewritten with variables and the right filter context; 04 Check, compare every number before and after: only the speed may change; 05 Hand over, the report, the timings and a note of every change.">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#FFFFFF"/>
-      <stop offset="1" stop-color="#FFFFFF"/>
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#10213A"/>
     </linearGradient>
   </defs>
   <style>
     text { font-family: "Segoe UI", -apple-system, Helvetica, Arial, sans-serif; }
-    .title { font-size: 21px; font-weight: 700; fill: #0F172A; }
-    .sub { font-size: 13.5px; fill: #475569; }
-    .num { font-size: 13px; font-weight: 700; fill: #0F172A; }
-    .step { font-size: 16px; font-weight: 700; fill: #0F172A; }
-    .desc { font-size: 12.5px; fill: #506078; }
-    .link { fill: none; stroke: #94A3B8; stroke-width: 2; stroke-dasharray: 4 5; }
+    .title { font-size: 21px; font-weight: 700; fill: #FFFFFF; }
+    .sub { font-size: 13.5px; fill: #CBD5E1; }
+    .num { font-size: 13px; font-weight: 700; fill: #FFFFFF; }
+    .step { font-size: 16px; font-weight: 700; fill: #FFFFFF; }
+    .desc { font-size: 12.5px; fill: #94A3B8; }
+    .link { fill: none; stroke: #64748B; stroke-width: 2; stroke-dasharray: 4 5; }
   </style>
 
-  <rect width="1000" height="290" rx="22" fill="url(#bg)" stroke="#E2E8F0" stroke-width="2"/>
+  <rect width="1000" height="290" rx="22" fill="url(#bg)"/>
   <text x="30" y="50" class="title">How it works</text>
   <text x="30" y="74" class="sub">Measure first, change the model and the DAX, prove the numbers did not move, then hand it over.</text>
 
