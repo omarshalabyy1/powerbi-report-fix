@@ -83,11 +83,11 @@ python data/demo/publish.py
 
 Every file the scripts and the notebook read and write, stage by stage: CSV files (`data/input/sales_flat.csv`, the export as received), the notebook (the 11 mapped columns in `output/sales.csv`, plus the check numbers), Power Query (the `Sales Flat` query types them and feeds three tables), the data model (the star schema), the ten DAX measures and the report pages (Overview and Products). The slow report loads the flat CSV straight into its pages, which is what makes it slow:
 
-![High level architecture: Contoso demo CSVs or a client's export arrive as data/input/sales_flat.csv (35 columns, 2,098,633 rows); the notebook maps 11 columns into output/sales.csv and writes the check numbers; Power Query types them and builds 3 tables; the data model is a star of 1 fact and 3 dimensions; 10 DAX measures; the fixed and slow report pages](docs/architecture.drawio.svg)
+![High level architecture by tool: Source files, sales_flat.csv (2,098,633 rows, 35 columns); Python + DuckDB, config.py checks the 11 mapped columns and analysis.ipynb writes output/sales.csv and the check numbers; Power BI Desktop, Power Query, a star data model of 1 fact and 3 dimensions, 10 DAX measures; Report, the fixed report (2 pages, 19 visuals) and the slow report reading sales_flat.csv as is](docs/architecture.drawio.svg)
 
-Every read in the code, file by file:
+The same steps in run order, from the flat export to the two reports:
 
-![Data flow, 24 reads: the 4 Contoso CSVs into sales_flat.csv; the notebook's DuckDB sales table, output/sales.csv, numbers.json and 06-checks.md; the Power Query staging query Sales Flat feeding Sales, Product and Customer, with Date built in DAX; 10 DAX measures reading Sales, Date and Product; the fixed report pages reading the measures and the three dimensions; the slow report loading sales_flat.csv as is](docs/data-flow.drawio.svg)
+![Data flow in six steps: 1 flat export sales_flat.csv (2,098,633 rows, 35 columns), 2 notebook writes output/sales.csv (11 columns) and 06-checks.md, 3 Power Query feeds Sales, Customer and Product, 4 star schema, 5 ten DAX measures, 6 fixed report with 19 visuals checked against 06-checks.md; branch: the slow report loads sales_flat.csv as is, with 35 + 6 calculated columns](docs/data-flow.drawio.svg)
 
 The data model, a star schema, with every column:
 
