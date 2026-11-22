@@ -2,42 +2,47 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0B1220"/>
-      <stop offset="1" stop-color="#10213A"/>
+      <stop offset="0.55" stop-color="#10213A"/>
+      <stop offset="1" stop-color="#1E1B4B"/>
     </linearGradient>
-      <radialGradient id="jrGlowA" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#7C3AED" stop-opacity="0.4"/>
+    <radialGradient id="glowA" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7C3AED" stop-opacity="0.45"/>
       <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="jrGlowB" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#14B8A6" stop-opacity="0.3"/>
+    <radialGradient id="glowB" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#14B8A6" stop-opacity="0.35"/>
       <stop offset="1" stop-color="#14B8A6" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <style>
-    text { font-family: "Segoe UI", -apple-system, Helvetica, Arial, sans-serif; }
-    .name { font-size: 34px; font-weight: 700; fill: #FFFFFF; }
-    .line { font-size: 16px; fill: #CBD5E1; }
-    .result { font-size: 16px; font-weight: 600; fill: #60A5FA; }
-      .wave { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 2 10; animation: flow 6s linear infinite; }
+    .sans { font-family: "Segoe UI", -apple-system, Helvetica, Arial, sans-serif; }
+    .wave { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 2 10; animation: flow 6s linear infinite; }
     @keyframes flow { to { stroke-dashoffset: -120; } }
+    .pulse { animation: pulse 3s ease-in-out infinite; transform-origin: 900px 100px; }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.08); opacity: 1; } }
   </style>
 
   <rect width="1000" height="200" rx="22" fill="url(#bg)"/>
-  <circle cx="880" cy="60" r="190" fill="url(#jrGlowA)"/>
-  <circle cx="160" cy="180" r="170" fill="url(#jrGlowB)"/>
-  <path class="wave" stroke="#2DD4BF" stroke-opacity="0.5" d="M24 189 C 200 184, 330 193, 500 189 S 800 185, 976 189"/>
-  <path class="wave" stroke="#A78BFA" stroke-opacity="0.4" style="animation-duration:9s" d="M40 195 C 220 191, 360 198, 520 195 S 820 192, 960 195"/>
+  <circle cx="880" cy="70" r="190" fill="url(#glowA)"/>
+  <circle cx="160" cy="180" r="170" fill="url(#glowB)"/>
 
-  <text x="40" y="78" class="name">Power BI report fix</text>
-  <text x="40" y="112" class="line">A slow sales report rebuilt as a star schema with clean DAX.</text>
-  <text x="40" y="142" class="result"><!--n:headline_short-->2,098,633 sales rows, one set of check numbers for both reports.<!--/n--></text>
+  <path class="wave" stroke="#2DD4BF" stroke-opacity="0.55" d="M0 162 C 150 128, 300 198, 480 162 S 780 134, 1000 158"/>
+  <path class="wave" stroke="#A78BFA" stroke-opacity="0.45" style="animation-duration:9s" d="M0 182 C 180 156, 330 204, 520 178 S 820 154, 1000 176"/>
 
-  <!-- the star -->
-  <g stroke="#3B82F6" stroke-width="2" fill="none" stroke-opacity="0.8">
-    <path d="M840 100V62M840 100H794M840 100H886"/>
+  <text x="40" y="82" class="sans" font-size="46" font-weight="700" fill="#FFFFFF">Power BI report fix</text>
+  <text x="42" y="116" class="sans" font-size="20" font-weight="600" fill="#5EEAD4">A slow sales report rebuilt as a star schema with clean DAX.</text>
+  <text x="42" y="144" class="sans" font-size="15" fill="#CBD5E1"><!--n:headline_short-->2,098,633 sales rows, one set of check numbers for both reports.<!--/n--></text>
+
+  <!-- Network mark -->
+  <g class="pulse" stroke="#5EEAD4" stroke-opacity="0.8" stroke-width="1.6">
+    <line x1="900" y1="100" x2="868" y2="72"/>
+    <line x1="900" y1="100" x2="932" y2="72"/>
+    <line x1="900" y1="100" x2="868" y2="128"/>
+    <line x1="900" y1="100" x2="932" y2="128"/>
+    <circle cx="900" cy="100" r="15" fill="#1E3A5F"/>
+    <circle cx="868" cy="72" r="7" fill="#0F172A"/>
+    <circle cx="932" cy="72" r="7" fill="#0F172A"/>
+    <circle cx="868" cy="128" r="7" fill="#0F172A"/>
+    <circle cx="932" cy="128" r="7" fill="#0F172A"/>
   </g>
-  <rect x="812" y="84" width="56" height="32" rx="7" fill="#3B82F6" fill-opacity="0.45" stroke="#3B82F6"/>
-  <rect x="816" y="40" width="48" height="22" rx="6" fill="#3B82F6" fill-opacity="0.15" stroke="#3B82F6" stroke-opacity="0.8"/>
-  <rect x="746" y="89" width="48" height="22" rx="6" fill="#3B82F6" fill-opacity="0.15" stroke="#3B82F6" stroke-opacity="0.8"/>
-  <rect x="886" y="89" width="48" height="22" rx="6" fill="#3B82F6" fill-opacity="0.15" stroke="#3B82F6" stroke-opacity="0.8"/>
 </svg>
