@@ -81,15 +81,15 @@ python data/demo/publish.py
 
 ## 🏗️ For engineers
 
-Every file the scripts and the notebook read and write, in the six layers: Bronze layer (`data/input/sales_flat.csv`, the export as received), Silver layer (the notebook's 11 mapped columns in `output/sales.csv`, typed by the `Sales Flat` query), Gold layer (no step: the fix adds no business rules), Semantic layer (the star schema), Analytical layer (the ten DAX measures) and Reporting layer (the Overview and Products pages). The slow report reads the Bronze layer file straight into its pages, which is what makes it slow:
+Every file the scripts and the notebook read and write, stage by stage: CSV files (`data/input/sales_flat.csv`, the export as received), the notebook (the 11 mapped columns in `output/sales.csv`, plus the check numbers), Power Query (the `Sales Flat` query types them and feeds three tables), the data model (the star schema), the ten DAX measures and the report pages (Overview and Products). The slow report loads the flat CSV straight into its pages, which is what makes it slow:
 
-![High level architecture: Contoso demo CSVs or a client's export land as data/input/sales_flat.csv (Bronze layer, 35 columns, 2,098,633 rows); the notebook maps 11 columns into output/sales.csv and Power Query types them (Silver layer); Power Query and DAX build a star of 1 fact and 3 dimensions (Semantic layer); 10 DAX measures (Analytical layer); the fixed and slow reports and the check numbers (Consume)](docs/architecture.drawio.svg)
+![High level architecture: Contoso demo CSVs or a client's export arrive as data/input/sales_flat.csv (35 columns, 2,098,633 rows); the notebook maps 11 columns into output/sales.csv and writes the check numbers; Power Query types them and builds 3 tables; the data model is a star of 1 fact and 3 dimensions; 10 DAX measures; the fixed and slow report pages](docs/architecture.drawio.svg)
 
 Every read in the code, file by file:
 
-![Data flow, 24 reads: the 4 Contoso CSVs into sales_flat.csv; the notebook's DuckDB sales table, output/sales.csv, numbers.json and 06-checks.md; the Sales Flat query feeding Sales, Product and Customer, with Date built in DAX; 10 measures reading Sales, Date and Product; the fixed report reading the measures and the three dimensions; the slow report loading sales_flat.csv as is](docs/data-flow.drawio.svg)
+![Data flow, 24 reads: the 4 Contoso CSVs into sales_flat.csv; the notebook's DuckDB sales table, output/sales.csv, numbers.json and 06-checks.md; the Power Query staging query Sales Flat feeding Sales, Product and Customer, with Date built in DAX; 10 DAX measures reading Sales, Date and Product; the fixed report pages reading the measures and the three dimensions; the slow report loading sales_flat.csv as is](docs/data-flow.drawio.svg)
 
-The star schema is the Semantic layer, with every column:
+The data model, a star schema, with every column:
 
 ![Star schema: the Sales fact (2,098,633 rows, 7 columns) joined one-to-many, single direction, to Date (3,653 rows), Customer (88,063 rows) and Product (2,517 rows)](docs/star-schema.drawio.svg)
 
